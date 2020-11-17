@@ -81,7 +81,7 @@ export default function EditSuite() {
                         <img
                            src={MIRHOS}
                            className="img-fluid mb-4"
-                           alt="Suite Photo"
+                           alt="Mir Hosp"
                         />
                         {/* <!--URL image (link)--> */}
                         <div className="custom-file mb-4" disabled>
@@ -99,7 +99,6 @@ export default function EditSuite() {
                               Image upload
                            </label>
                         </div>
-
                         {/* <!--NAME & BEDROOMS--> */}
                         <div className="form-group">
                            <label for="inputSuite">Name of suite</label>

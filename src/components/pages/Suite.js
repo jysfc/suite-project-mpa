@@ -93,7 +93,8 @@ export default function Suite() {
             <div className="col-12 col-md-6">
                <form className="md-form">
                   <Link
-                     to="https:mirage.com"
+                     to={{ pathname: "https://mirage.com" }}
+                     target="_blank"
                      className="btn btn-primary btn-block mb-4"
                      type="book-now"
                   >

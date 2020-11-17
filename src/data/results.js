@@ -21,6 +21,7 @@ export const results = [
       property: `Mandalay Bay Hotel & Casino`,
       desc: `1450 sq. ft · 6 max guests
       1 king bed · 2 queen beds`,
+
       isActive: true,
    },
 ];
