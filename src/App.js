@@ -7,19 +7,20 @@ import EditSuite from "./components/pages/EditSuite";
 import Login from "./components/pages/Login";
 import SelectProperty from "./components/pages/SelectProperty";
 import Suite from "./components/pages/Suite";
+import NotFound from "./components/pages/NotFound";
 
 export default function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Result} />
-        <Route exact path="/create-answer" component={EditProperty} />
-        <Route exact path="/create-imagery" component={EditSuite} />
-        <Route exact path="/review-answer" component={Login} />
-        <Route exact path="/review-cue" component={SelectProperty} />
-        <Route exact path="/review-done" component={Suite} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
-  );
+   return (
+      <Router>
+         <Switch>
+            <Route exact path="/" component={Result} />
+            <Route exact path="/edit-property" component={EditProperty} />
+            <Route exact path="/edit-suite" component={EditSuite} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/select-property" component={SelectProperty} />
+            <Route exact path="/suite" component={Suite} />
+            <Route component={NotFound} />
+         </Switch>
+      </Router>
+   );
 }
