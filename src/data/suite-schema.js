@@ -1,0 +1,15 @@
+const suiteSchema = {
+   id: string,
+   title: string,
+   property: string,
+   squareFt: string,
+   maxGuest: string,
+   kingBed: string,
+   QueenBed: string,
+   wiFi: boolean,
+   tv: boolean,
+   safe: boolean,
+   accessible: boolean,
+   userId: string,
+   isActive: boolean,
+};

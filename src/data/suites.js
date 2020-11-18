@@ -1,27 +1,47 @@
-export const results = [
+export const suites = [
    {
       id: `76e032b2-8ba6-4487-818c-5290cdbb5a1b`,
       title: `Two Bedroom Hospitality Suite`,
       property: `The Mirage Hotel & Casino`,
-      desc: `1714 sq. ft · 6 max guests
-      1 king bed · 2 queen beds`,
+      squareFt: `1714`,
+      maxGuest: `6`,
+      kingBed: `1`,
+      QueenBed: `2`,
+      wiFi: true,
+      tv: true,
+      safe: true,
+      accessible: true,
+      userId: `9bfbc757-fcc9-40c8-9f83-652fdefee41e`,
       isActive: true,
    },
    {
       id: `bc87a93d-5f13-47d6-af99-41ec08a36c73`,
       title: `Two Bedroom Tower Suite`,
       property: `The Mirage Hotel & Casino`,
-      desc: `1628 sq. ft · 6 max guests
-      1 king bed · 2 queen beds`,
+      squareFt: `1628`,
+      maxGuest: `6`,
+      kingBed: `1`,
+      QueenBed: `2`,
+      wiFi: true,
+      tv: true,
+      safe: false,
+      accessible: true,
+      userId: `9bfbc757-fcc9-40c8-9f83-652fdefee41e`,
       isActive: true,
    },
    {
       id: `96552e06-cdcc-43ee-9675-582d1381ca9a`,
       title: `Panoramic Two Bedroom Suite`,
       property: `Mandalay Bay Hotel & Casino`,
-      desc: `1450 sq. ft · 6 max guests
-      1 king bed · 2 queen beds`,
-
+      squareFt: `1450`,
+      maxGuest: `6`,
+      kingBed: `1`,
+      QueenBed: `2`,
+      wiFi: true,
+      tv: true,
+      safe: true,
+      accessible: false,
+      userId: `3e4f4858-88ba-47fc-b23d-0622f7858802`,
       isActive: true,
    },
 ];
