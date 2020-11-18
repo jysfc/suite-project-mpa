@@ -6,7 +6,7 @@ const users = [
       createdAt: 1605664419064,
       properties: [
          {
-            id: `76e032b2-8ba6-4487-818c-5290cdbb5a1b`,
+            suiteId: `76e032b2-8ba6-4487-818c-5290cdbb5a1b`,
             title: `Two Bedroom Hospitality Suite`,
             name: `The Mirage Hotel & Casino`,
             id: `76e032b2-8ba6-4487-818c-5290cdbb5a1c`,
@@ -28,7 +28,7 @@ const users = [
             isActive: true,
          },
          {
-            id: `bc87a93d-5f13-47d6-af99-41ec08a36c73`,
+            suiteId: `bc87a93d-5f13-47d6-af99-41ec08a36c73`,
             title: `Two Bedroom Tower Suite`,
             name: `The Mirage Hotel & Casino`,
             id: `76e032b2-8ba6-4487-818c-5290cdbb5a1c`,
@@ -58,7 +58,7 @@ const users = [
       createdAt: 1605664433241,
       properties: [
          {
-            id: `96552e06-cdcc-43ee-9675-582d1381ca9a`,
+            suiteId: `96552e06-cdcc-43ee-9675-582d1381ca9a`,
             title: `Panoramic Two Bedroom Suite`,
             name: `Mandalay Bay Hotel & Casino`,
             id: `96552e06-cdcc-43ee-9675-582d1381ca9b`,
