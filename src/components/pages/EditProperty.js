@@ -500,20 +500,6 @@ export default function EditProperty() {
                            <input
                               className="form-check-input"
                               type="checkbox"
-                              id="DogFriendly"
-                              value="option6"
-                           />
-                           <label
-                              className="form-check-label"
-                              for="DogFriendly"
-                           >
-                              Dog Friendly
-                           </label>
-                        </div>
-                        <div className="form-group form-check-inline">
-                           <input
-                              className="form-check-input"
-                              type="checkbox"
                               id="SmokeFree"
                               value="option7"
                            />

@@ -5,7 +5,6 @@ import ParkSelfIcon from "../../icons/parkself.svg";
 import ParkValetIcon from "../../icons/parkvalet.svg";
 import PoolOutdoorIcon from "../../icons/pooloutdoor.svg";
 import SpaIcon from "../../icons/spa.svg";
-import DogAllowedIcon from "../../icons/dogallowed.svg";
 import SmokingNoIcon from "../../icons/smokingno.svg";
 import MIRHOS from "../../images/MIRHOS.jpg";
 import BookNowIcon from "../../icons/book-now.svg";
@@ -64,15 +63,6 @@ export default function Suite() {
                               alt=""
                            />
                            Spa
-                        </li>
-                        <li>
-                           <img
-                              src={DogAllowedIcon}
-                              width="16px"
-                              className="mr-1"
-                              alt=""
-                           />
-                           Dog Friendly
                         </li>
                         <li>
                            <img
