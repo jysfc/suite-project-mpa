@@ -20,8 +20,8 @@ const users = [
             phoneCountryCode: `001`,
             phoneAreaCode: `702`,
             phoneNumber: `7917111`, //just numbers
-            selfParking: "Free",
-            valetParking: "N/A",
+            selfParking: `Free`,
+            valetParking: `N/A`,
             hasOutdoorPool: true,
             hasSpa: true,
             isSmokeFree: true,
@@ -42,8 +42,8 @@ const users = [
             phoneCountryCode: `001`,
             phoneAreaCode: `702`,
             phoneNumber: `7917111`, //just numbers
-            selfParking: "Free",
-            valetParking: "N/A",
+            selfParking: `Free`,
+            valetParking: `N/A`,
             hasOutdoorPool: true,
             hasSpa: true,
             isSmokeFree: true,
@@ -72,8 +72,8 @@ const users = [
             phoneCountryCode: `001`,
             phoneAreaCode: `702`,
             phoneNumber: `6327777`, //just numbers
-            selfParking: "Free",
-            valetParking: "N/A",
+            selfParking: `Free`,
+            valetParking: `N/A`,
             hasOutdoorPool: true,
             hasSpa: true,
             isSmokeFree: true,
