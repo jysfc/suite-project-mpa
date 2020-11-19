@@ -10,7 +10,7 @@ export default function SelectProperty() {
    return (
       <AppTemplate>
          <div className="row ">
-            {/* <!-- Property 1 --> */}
+            {/* <!-- Properties --> */}
             {suites.map((suite) => {
                return (
                   <Property property={suite.property} key={suite.propertyId} />

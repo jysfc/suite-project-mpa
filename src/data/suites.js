@@ -14,7 +14,7 @@ const suites = [
       propertyPhoneCountryCode: `001`,
       propertyPhoneAreaCode: `702`,
       propertyPhoneNumber: `7917111`, //just numbers
-      image: `../images/MIRHOS.jpg`,
+      image: `https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-hospitality-suite-living-area-architectural.tif.image.892.668.high.jpg`,
       squareFt: 1714,
       maxGuest: 6,
       totalKingBed: 1,
@@ -47,7 +47,7 @@ const suites = [
       propertyPhoneCountryCode: `001`,
       propertyPhoneAreaCode: `702`,
       propertyPhoneNumber: `7917111`, //just numbers
-      image: `../images/MIR2T.jpg`,
+      image: `https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-tower-suite-living-area-limeade-architectural.tif.image.892.668.high.jpg`,
       squareFt: 1628,
       maxGuest: 6,
       totalKingBed: 1,
@@ -80,7 +80,7 @@ const suites = [
       propertyPhoneCountryCode: `001`,
       propertyPhoneAreaCode: `702`,
       propertyPhoneNumber: `6327777`, //just numbers
-      image: `../images/MBPANO.jpg`,
+      image: `https://static.mgmresorts.com/content/dam/MGM/mandalay-bay/hotel/mandalay-bay-rooms/mandalay-bay-hotel-room-panoramic-suite-living-room-curtain-open.tif.image.1488.836.high.jpg`,
       squareFt: 1450,
       maxGuest: 6,
       totalKingBed: 1,
