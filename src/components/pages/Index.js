@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { safelyParseJson } from "../../utils/helpers";
 import orderBy from "lodash/orderBy";
 import MIR2T from "../../images/MIR2T.jpg";
-import Suite from "../ui/Suite";
+import Result from "../ui/Result";
 import suites from "../../data/suites";
 
-export default class Result extends React.Component {
+export default class Index extends React.Component {
    constructor(props) {
       super(props);
       const activeSuites = suites.filter((suite) => {
@@ -55,7 +55,7 @@ export default class Result extends React.Component {
             {/* <!--results 1--> */}
             {this.state.displayedSuites.map((suite) => {
                return (
-                  <Suite
+                  <Result
                      title={suite.title}
                      property={suite.property}
                      squareFt={suite.squareFt}

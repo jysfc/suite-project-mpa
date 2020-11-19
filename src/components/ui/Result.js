@@ -4,7 +4,7 @@ import MIRHOS from "../../images/MIRHOS.jpg";
 // import MIR2T from "../../images/MIR2T.jpg";
 // import MBPANO from "../../images/MBPANO.jpg";
 
-// export default class Suite extends React.Component {
+// export default class Result extends React.Component {
 //    constructor(props) {
 //       super(props); // allow access to this.
 //       this.state = {
@@ -14,7 +14,7 @@ import MIRHOS from "../../images/MIRHOS.jpg";
 //    }
 
 //    render() {
-export default function Suite(props) {
+export default function Result(props) {
    return (
       //<!--results-->
       <div
