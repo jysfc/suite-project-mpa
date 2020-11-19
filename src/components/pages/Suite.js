@@ -24,6 +24,7 @@ export default function Suite() {
                   <li className="mt-4">3400 S Las Vegas Blvd</li>
                   <li>Las Vegas, NV 89109 US</li>
                   <li>+1(702) 791-7111</li>
+                  <li>mirage.com</li>
 
                   <li className="mt-4">
                      <img

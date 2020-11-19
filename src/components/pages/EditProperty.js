@@ -548,7 +548,7 @@ export default function EditProperty() {
                                     className="text-dark lead text-decoration-none"
                                     type="button"
                                  >
-                                    Two Bedroom Hospitality Suite
+                                    Hospitality Suite
                                  </Link>
                                  <Link
                                     to=""

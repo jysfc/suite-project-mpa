@@ -3,9 +3,8 @@ import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import MIRHOS from "../../images/MIRHOS.jpg";
 import SaveIcon from "../../icons/save.svg";
-import PoolOutdoorIcon from "../../icons/pooloutdoor.svg";
-import SpaIcon from "../../icons/spa.svg";
-import SmokingNoIcon from "../../icons/smokingno.svg";
+import PropInfo from "../ui/PropInfo";
+import suites from "../../data/suites";
 
 export default function EditSuite() {
    return (
@@ -14,55 +13,25 @@ export default function EditSuite() {
             <div className="container">
                <div className="row">
                   {/* <!--COLUMN LEFT PROP INFO--> */}
-                  <div className="col-12 col-md-6">
-                     <h2>The Mirage Hotel & Casino</h2>
-
-                     <ul className="list-unstyled">
-                        <li className="mt-4">3400 S Las Vegas Blvd</li>
-                        <li>Las Vegas, NV 89109 US</li>
-                        <li>+1(702) 791-7111</li>
-                        <li>mirage.com</li>
-
-                        <li className="mt-4">
-                           <strong>Self parking:</strong> Free
-                        </li>
-                        <li>
-                           <strong>Valet parking:</strong> N/A
-                        </li>
-                        <li className="lead mt-4">Hotel Amenities:</li>
-                        <li>
-                           <ul className="list-unstyled">
-                              <li>
-                                 <img
-                                    src={PoolOutdoorIcon}
-                                    width="16px"
-                                    className="mr-1"
-                                    alt=""
-                                 />
-                                 Outdoor Pool
-                              </li>
-                              <li>
-                                 <img
-                                    src={SpaIcon}
-                                    width="16px"
-                                    className="mr-1"
-                                    alt=""
-                                 />
-                                 Spa
-                              </li>
-                              <li>
-                                 <img
-                                    src={SmokingNoIcon}
-                                    width="16px"
-                                    className="mr-1"
-                                    alt=""
-                                 />
-                                 Smoke-free
-                              </li>
-                           </ul>
-                        </li>
-                     </ul>
-                  </div>
+                  {suites.map((suite) => {
+                     return (
+                        <PropInfo
+                           property={suite.property}
+                           propertyAddress1={suite.propertyAddress1}
+                           city={suite.propertyCity}
+                           state={suite.propertyState}
+                           zip={suite.propertyZip}
+                           country={suite.propertyCountry}
+                           phoneCountryCode={suite.propertyPhoneCountryCode}
+                           phoneAreaCode={suite.phoneAreaCode}
+                           phoneNumber={suite.phoneNumber}
+                           website={suite.propertyWebsite}
+                           selfParking={suite.propertySelfParking}
+                           valetParking={suite.propertyValetParking}
+                           key={suite.propertyId}
+                        />
+                     );
+                  })}
 
                   {/* <!--COLUMN RIGHT EDIT SUITE--> */}
                   {/* <!--TODO add cursor over image--> */}
