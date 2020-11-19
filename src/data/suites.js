@@ -1,4 +1,4 @@
-export const suites = [
+const suites = [
    {
       id: `76e032b2-8ba6-4487-818c-5290cdbb5a1b`,
       title: `Two Bedroom Hospitality Suite`,
@@ -14,6 +14,7 @@ export const suites = [
       propertyPhoneCountryCode: `001`,
       propertyPhoneAreaCode: `702`,
       propertyPhoneNumber: `7917111`, //just numbers
+      image: `../images/MIRHOS.jpg`,
       squareFt: 1714,
       maxGuest: 6,
       totalKingBed: 1,
@@ -46,6 +47,7 @@ export const suites = [
       propertyPhoneCountryCode: `001`,
       propertyPhoneAreaCode: `702`,
       propertyPhoneNumber: `7917111`, //just numbers
+      image: `../images/MIR2T.jpg`,
       squareFt: 1628,
       maxGuest: 6,
       totalKingBed: 1,
@@ -78,6 +80,7 @@ export const suites = [
       propertyPhoneCountryCode: `001`,
       propertyPhoneAreaCode: `702`,
       propertyPhoneNumber: `6327777`, //just numbers
+      image: `../images/MBPANO.jpg`,
       squareFt: 1450,
       maxGuest: 6,
       totalKingBed: 1,
@@ -96,3 +99,4 @@ export const suites = [
       isActive: true,
    },
 ];
+export default suites;
