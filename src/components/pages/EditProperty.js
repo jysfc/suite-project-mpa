@@ -3,9 +3,8 @@ import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import SaveIcon from "../../icons/save.svg";
 import SuiteAddIcon from "../../icons/suite-add.svg";
-import RemoveIcon from "../../icons/remove.svg";
-import MIRHOS from "../../images/MIRHOS.jpg";
-import MIR2T from "../../images/MIR2T.jpg";
+import SuiteAvail from "../ui/SuiteAvail";
+import { users } from "../../data/users";
 
 export default function EditProperty() {
    return (
@@ -529,81 +528,15 @@ export default function EditProperty() {
                   {/* <!--COLUMN RIGHT PROP RESULT--> */}
                   <div className="col-sm-6">
                      {/* <!--RESULT 1--> */}
-                     <div
-                        className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
-                        style={{ maxWidth: "900px", height: "auto" }}
-                     >
-                        <div className="row">
-                           <div className="col-md-5 pr-1">
-                              <img
-                                 src={MIRHOS}
-                                 className="img-fluid"
-                                 alt="MIRHOS"
-                              />
-                           </div>
-                           <div className="col-md-7 mt-2">
-                              <div className="text-muted">
-                                 <Link
-                                    to="/edit-suite"
-                                    className="text-dark lead text-decoration-none"
-                                    type="button"
-                                 >
-                                    Hospitality Suite
-                                 </Link>
-                                 <Link
-                                    to=""
-                                    className="text-danger text-decoration-none float-right"
-                                 >
-                                    <img
-                                       src={RemoveIcon}
-                                       width="20px"
-                                       id="property-remove"
-                                       alt=""
-                                    />
-                                    Remove
-                                 </Link>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     {/* <!--RESULT 2--> */}
-                     <div
-                        className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
-                        style={{ maxWidth: "900px", height: "auto" }}
-                     >
-                        <div className="row">
-                           <div className="col-md-5 pr-2">
-                              <img
-                                 src={MIR2T}
-                                 className="img-fluid"
-                                 alt="MIR2T"
-                              />
-                           </div>
-                           <div className="col-md-7 mt-2">
-                              <div className="text-muted">
-                                 <Link
-                                    to="/edit-suite"
-                                    className="text-dark lead text-decoration-none"
-                                    type="button"
-                                 >
-                                    Two Bedroom Tower Suite
-                                 </Link>
-                                 <Link
-                                    to=""
-                                    className="text-danger text-decoration-none float-right"
-                                 >
-                                    <img
-                                       src={RemoveIcon}
-                                       width="20px"
-                                       id="property-remove"
-                                       alt=""
-                                    />
-                                    Remove
-                                 </Link>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                     {users.map((user) => {
+                        return (
+                           <SuiteAvail
+                              user={user.id}
+                              key={user.properties.id}
+                           />
+                        );
+                     })}
+
                      {/* <!--NEW PROP--> */}
                      <div className="col mb-4">
                         <Link

@@ -22,6 +22,7 @@ export const users = [
             phoneAreaCode: `702`,
             phoneNumber: `7917111`, //just numbers
             selfParking: `Free`,
+            image: `https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-hospitality-suite-living-area-architectural.tif.image.892.668.high.jpg`,
             valetParking: `N/A`,
             hasOutdoorPool: true,
             hasSpa: true,
@@ -43,6 +44,7 @@ export const users = [
             phoneCountryCode: `001`,
             phoneAreaCode: `702`,
             phoneNumber: `7917111`, //just numbers
+            image: `https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-tower-suite-living-area-limeade-architectural.tif.image.892.668.high.jpg`,
             selfParking: `Free`,
             valetParking: `N/A`,
             hasOutdoorPool: true,
@@ -74,6 +76,7 @@ export const users = [
             phoneCountryCode: `001`,
             phoneAreaCode: `702`,
             phoneNumber: `6327777`, //just numbers
+            image: `https://static.mgmresorts.com/content/dam/MGM/mandalay-bay/hotel/mandalay-bay-rooms/mandalay-bay-hotel-room-panoramic-suite-living-room-curtain-open.tif.image.1488.836.high.jpg`,
             selfParking: `Free`,
             valetParking: `N/A`,
             hasOutdoorPool: true,
