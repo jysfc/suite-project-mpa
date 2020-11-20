@@ -9,52 +9,67 @@ export default function PropInfo(props) {
    return (
       //<!--COLUMN LEFT PROP INFO-->
       <div className="col-12 col-md-6">
-         <h2>{props.property}</h2>
+         <h2>{props.suite.property}</h2>
          <ul className="list-unstyled">
-            <li className="mt-4">{props.propertyAddress1}</li>
+            <li className="mt-4">{props.suite.propertyAddress1}</li>
             <li>
-               {props.propertyCity}, {props.propertyState} {props.propertyZip}{" "}
-               {props.propertyCountry}
+               {props.suite.propertyCity}, {props.suite.propertyState}{" "}
+               {props.suite.propertyZip} {props.suite.propertyCountry}
             </li>
             <li>
-               {props.propertyPhoneCountryCode}({props.propertyPhoneAreaCode}){" "}
-               {props.propertyPhoneNumber}
+               {props.suite.propertyPhoneCountryCode}(
+               {props.suite.propertyPhoneAreaCode}){" "}
+               {props.suite.propertyPhoneNumber}
             </li>
-            <li>{props.propertyWebsite}</li>
+            <li>{props.suite.propertyWebsite}</li>
 
             <li className="mt-4">
                <img src={ParkSelfIcon} width="16px" className="mr-1" alt="" />
-               <strong>Self parking:</strong> {props.propertySelfParking}
+               <strong>Self parking:</strong> {props.suite.propertySelfParking}
             </li>
             <li>
                <img src={ParkValetIcon} width="16px" className="mr-1" alt="" />
-               <strong>Valet parking:</strong> {props.propertyValetParking}
+               <strong>Valet parking:</strong>{" "}
+               {props.suite.propertyValetParking}
             </li>
             <li className="lead mt-4">Hotel Amenities:</li>
             <li>
                <ul className="list-unstyled">
-                  <li>
-                     <img
-                        src={PoolOutdoorIcon}
-                        width="16px"
-                        className="mr-1"
-                        alt=""
-                     />
-                     Outdoor Pool
-                  </li>
-                  <li>
-                     <img src={SpaIcon} width="16px" className="mr-1" alt="" />
-                     Spa
-                  </li>
-                  <li>
-                     <img
-                        src={SmokingNoIcon}
-                        width="16px"
-                        className="mr-1"
-                        alt=""
-                     />
-                     Smoke-free
-                  </li>
+                  {props.suite.propertyHasOutdoorPool && (
+                     <li>
+                        <img
+                           src={PoolOutdoorIcon}
+                           width="16px"
+                           className="mr-1"
+                           alt=""
+                        />
+                        Outdoor Pool
+                     </li>
+                  )}
+
+                  {props.suite.propertyHasSpa && (
+                     <li>
+                        <img
+                           src={SpaIcon}
+                           width="16px"
+                           className="mr-1"
+                           alt=""
+                        />
+                        Spa
+                     </li>
+                  )}
+
+                  {props.suite.propertyIsSmokeFree && (
+                     <li>
+                        <img
+                           src={SmokingNoIcon}
+                           width="16px"
+                           className="mr-1"
+                           alt=""
+                        />
+                        Smoke-free
+                     </li>
+                  )}
                </ul>
             </li>
          </ul>

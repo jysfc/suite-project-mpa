@@ -1,83 +1,21 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
-import ParkSelfIcon from "../../icons/parkself.svg";
-import ParkValetIcon from "../../icons/parkvalet.svg";
-import PoolOutdoorIcon from "../../icons/pooloutdoor.svg";
-import SpaIcon from "../../icons/spa.svg";
-import SmokingNoIcon from "../../icons/smokingno.svg";
-import MIRHOS from "../../images/MIRHOS.jpg";
 import BookNowIcon from "../../icons/book-now.svg";
 import TvIcon from "../../icons/tv.svg";
 import SafeIcon from "../../icons/safe.svg";
 import WifiIcon from "../../icons/wifi.svg";
 import AccessibleIcon from "../../icons/accessible.svg";
+import PropInfo from "../ui/PropInfo";
+import suites from "../../data/suites";
+const suite = suites[0];
 
-export default function Suite() {
+export default function Suite(props) {
    return (
       <AppTemplate>
          <div className="row">
             {/* <!--COLUMN LEFT PROP INFO--> */}
-            <div className="col-12 col-md-6">
-               <h2>The Mirage Hotel & Casino</h2>
-               <ul className="list-unstyled">
-                  <li className="mt-4">3400 S Las Vegas Blvd</li>
-                  <li>Las Vegas, NV 89109 US</li>
-                  <li>+1(702) 791-7111</li>
-                  <li>mirage.com</li>
-
-                  <li className="mt-4">
-                     <img
-                        src={ParkSelfIcon}
-                        width="16px"
-                        className="mr-1"
-                        alt=""
-                     />
-                     <strong>Self parking:</strong> Free
-                  </li>
-                  <li>
-                     <img
-                        src={ParkValetIcon}
-                        width="16px"
-                        className="mr-1"
-                        alt=""
-                     />
-                     <strong>Valet parking:</strong> N/A
-                  </li>
-                  <li className="lead mt-4">Hotel Amenities:</li>
-                  <li>
-                     <ul className="list-unstyled">
-                        <li>
-                           <img
-                              src={PoolOutdoorIcon}
-                              width="16px"
-                              className="mr-1"
-                              alt=""
-                           />
-                           Outdoor Pool
-                        </li>
-                        <li>
-                           <img
-                              src={SpaIcon}
-                              width="16px"
-                              className="mr-1"
-                              alt=""
-                           />
-                           Spa
-                        </li>
-                        <li>
-                           <img
-                              src={SmokingNoIcon}
-                              width="16px"
-                              className="mr-1"
-                              alt=""
-                           />
-                           Smoke-free
-                        </li>
-                     </ul>
-                  </li>
-               </ul>
-            </div>
+            <PropInfo suite={suite} key={suite.propertyId} />
 
             {/* <!--COLUMN RIGHT EDIT SUITE--> */}
             {/* <!--BOOK BTN--> */}
@@ -93,53 +31,72 @@ export default function Suite() {
                      <p className="d-inline">BOOK NOW</p>
                   </Link>
                   {/* <!--IMAGE--> */}
-                  <img src={MIRHOS} className="img-fluid mb-4" alt="Mir Hosp" />
+                  <img
+                     src={suite.image}
+                     className="img-fluid mb-4"
+                     alt="Mir Hosp"
+                  />
                   {/* <!--SUITE INFO--> */}
                   <ul className="list-unstyled">
-                     <p className="lead">Two Bedroom Hospitality Suite</p>
-                     <li>1714 sq. ft · 6 max guests</li>
-                     <li>1 king bed · 2 queen beds</li>
+                     <p className="lead">{suite.title}</p>
+                     <li>
+                        {suite.squareFt} sq. ft · {suite.maxGuest} max guests
+                     </li>
+                     <li>
+                        {suite.totalKingBed} king bed · {suite.totalQueenBed}{" "}
+                        queen beds
+                     </li>
 
                      {/* <!--SUITE AMENITIES--> */}
                      <li className="lead mt-4">Suite Amenities:</li>
                      <li>
                         <ul className="list-unstyled">
-                           <li>
-                              <img
-                                 src={WifiIcon}
-                                 width="16px"
-                                 className="mr-1"
-                                 alt=""
-                              />
-                              WiFi
-                           </li>
-                           <li>
-                              <img
-                                 src={TvIcon}
-                                 width="16px"
-                                 className="mr-1"
-                                 alt=""
-                              />
-                              TV
-                           </li>
-                           <li>
-                              <img
-                                 src={SafeIcon}
-                                 width="16px"
-                                 className="mr-1"
-                                 alt=""
-                              />
-                              In-Room Safe
-                           </li>
-                           <li>
-                              <img
-                                 src={AccessibleIcon}
-                                 width="16px"
-                                 className="mr-1"
-                                 alt=""
-                              />
-                              Accessible
-                           </li>
+                           {suite.hasWiFi && (
+                              <li>
+                                 <img
+                                    src={WifiIcon}
+                                    width="16px"
+                                    className="mr-1"
+                                    alt=""
+                                 />
+                                 WiFi
+                              </li>
+                           )}
+
+                           {suite.hasTv && (
+                              <li>
+                                 <img
+                                    src={TvIcon}
+                                    width="16px"
+                                    className="mr-1"
+                                    alt=""
+                                 />
+                                 TV
+                              </li>
+                           )}
+                           {suite.hasSafe && (
+                              <li>
+                                 <img
+                                    src={SafeIcon}
+                                    width="16px"
+                                    className="mr-1"
+                                    alt=""
+                                 />
+                                 In-Room Safe
+                              </li>
+                           )}
+
+                           {suite.isAccessible && (
+                              <li>
+                                 <img
+                                    src={AccessibleIcon}
+                                    width="16px"
+                                    className="mr-1"
+                                    alt=""
+                                 />
+                                 Accessible
+                              </li>
+                           )}
                         </ul>
                      </li>
                   </ul>

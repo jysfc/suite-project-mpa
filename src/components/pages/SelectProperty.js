@@ -1,41 +1,18 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
-import RemoveIcon from "../../icons/remove.svg";
 import AddIcon from "../../icons/add.svg";
-import Property from "../ui/Property";
-import suites from "../../data/suites";
+import PropPrev from "../ui/PropPrev";
+import { users } from "../../data/users";
 
 export default function SelectProperty() {
    return (
       <AppTemplate>
-         <div className="row ">
-            {/* <!-- Properties --> */}
-            {suites.map((suite) => {
-               return (
-                  <Property property={suite.property} key={suite.propertyId} />
-               );
-            })}
+         {/* <!-- Properties --> */}
+         {users.map((user) => {
+            return <PropPrev user={user} key={user.id} />;
+         })}
 
-            {/* <!-- Property 2 --> */}
-            <div className="col mb-4 mr-2 shadow p-3 mb-5 bg-white rounded">
-               <Link
-                  to="edit-property"
-                  className="text-dark text-decoration-none"
-                  type="button"
-               >
-                  <h5>Mandalay Bay Hotel & Casino</h5>
-               </Link>
-
-               <Link
-                  to=""
-                  className="text-danger text-decoration-none float-right"
-               >
-                  <img src={RemoveIcon} width="20px" id="hotel-add" alt="" />
-                  Remove
-               </Link>
-            </div>
-         </div>
          {/* <!-- Property new --> */}
          <div className="col mb-4">
             <Link

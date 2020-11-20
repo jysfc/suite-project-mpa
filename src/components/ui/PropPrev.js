@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import RemoveIcon from "../../icons/remove.svg";
 
-export default function Property(props) {
+export default function PropPrev(props) {
    return (
       //<!-- Property -->
       <div className="col mb-4 mr-2 shadow p-3 mb-5 bg-white rounded">
@@ -11,7 +11,7 @@ export default function Property(props) {
             className="text-dark text-decoration-none"
             type="button"
          >
-            <h5>{props.property}</h5>
+            <h5>{props.user.properties[0].name}</h5>
          </Link>
          <p> </p>
 

@@ -5,6 +5,7 @@ import MIRHOS from "../../images/MIRHOS.jpg";
 import SaveIcon from "../../icons/save.svg";
 import PropInfo from "../ui/PropInfo";
 import suites from "../../data/suites";
+const suite = suites[0];
 
 export default function EditSuite() {
    return (
@@ -13,26 +14,7 @@ export default function EditSuite() {
             <div className="container">
                <div className="row">
                   {/* <!--COLUMN LEFT PROP INFO--> */}
-                  {suites.map((suite) => {
-                     return (
-                        <PropInfo
-                           property={suite.property}
-                           propertyAddress1={suite.propertyAddress1}
-                           city={suite.propertyCity}
-                           state={suite.propertyState}
-                           zip={suite.propertyZip}
-                           country={suite.propertyCountry}
-                           phoneCountryCode={suite.propertyPhoneCountryCode}
-                           phoneAreaCode={suite.phoneAreaCode}
-                           phoneNumber={suite.phoneNumber}
-                           website={suite.propertyWebsite}
-                           selfParking={suite.propertySelfParking}
-                           valetParking={suite.propertyValetParking}
-                           key={suite.propertyId}
-                        />
-                     );
-                  })}
-
+                  <PropInfo suite={suite} key={suite.propertyId} />
                   {/* <!--COLUMN RIGHT EDIT SUITE--> */}
                   {/* <!--TODO add cursor over image--> */}
                   <div className="col-12 col-md-6">

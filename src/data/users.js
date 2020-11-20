@@ -1,9 +1,10 @@
-const users = [
+export const users = [
    {
       id: `9bfbc757-fcc9-40c8-9f83-652fdefee41e`,
       email: `jay@mirage.com`,
       password: `5B6BAE31B3A9C341FC7AC920A037514F14F3C8C0`,
       createdAt: 1605664419064,
+      isActive: true,
       properties: [
          {
             suiteId: `76e032b2-8ba6-4487-818c-5290cdbb5a1b`,
@@ -56,6 +57,7 @@ const users = [
       email: `mike@mandalaybay.com`,
       password: `82CBE1D375C65A50EC24654B5272683FBB58B5B4`,
       createdAt: 1605664433241,
+      isActive: true,
       properties: [
          {
             suiteId: `96552e06-cdcc-43ee-9675-582d1381ca9a`,
