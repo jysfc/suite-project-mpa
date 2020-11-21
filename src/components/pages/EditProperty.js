@@ -529,12 +529,7 @@ export default function EditProperty() {
                   <div className="col-sm-6">
                      {/* <!--RESULT 1--> */}
                      {users.map((user) => {
-                        return (
-                           <SuiteAvail
-                              user={user.id}
-                              key={user.properties.id}
-                           />
-                        );
+                        return <SuiteAvail user={user} key={user.id} />;
                      })}
 
                      {/* <!--NEW PROP--> */}
