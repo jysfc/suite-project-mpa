@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function SuitePrev(props) {
    return (
-      //<!--SuitePrevs-->
+      //<!--SuitePrev-->
       <div
          className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
          style={{ maxWidth: "900px", height: "auto" }}

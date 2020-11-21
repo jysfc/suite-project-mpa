@@ -2,15 +2,15 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import AddIcon from "../../icons/add.svg";
-import suites from "../../data/suites";
-import SuiteAvail from "../ui/SuiteAvail";
+import PropPrev from "../ui/PropPrev";
+import { users } from "../../data/users";
 
 export default function SelectProperty() {
    return (
       <AppTemplate>
          {/* <!-- Properties --> */}
-         {suites.map((suite) => {
-            return <SuiteAvail suite={suite} key={suite.userId} />;
+         {users.map((user) => {
+            return <PropPrev user={user} key={user.userId} />;
          })}
 
          {/* <!-- Property new --> */}
