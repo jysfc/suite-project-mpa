@@ -15,10 +15,10 @@ export const users = [
             address1: `3400 S Las Vegas Blvd`,
             address2: ``,
             city: `Las Vegas`,
-            state: `Nevada`,
+            state: `NV`,
             zip: `89109`,
             country: `United States`,
-            phoneCountryCode: `001`,
+            phoneCountryCode: `+1`,
             phoneAreaCode: `702`,
             phoneNumber: `7917111`, //just numbers
             selfParking: `Free`,
