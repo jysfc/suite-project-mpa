@@ -17,7 +17,7 @@ export default function EditProperty() {
                      {/* <!--HOTEL & URL--> */}
                      <div className="form-row">
                         <div className="form-group col-lg-6">
-                           <label for="inputHotel">Hotel</label>
+                           <label htmlFor="inputHotel">Hotel</label>
                            <input
                               type="text"
                               className="form-control"
@@ -26,7 +26,7 @@ export default function EditProperty() {
                            />
                         </div>
                         <div className="form-group col-lg-6">
-                           <label for="inputUrl">Website URL</label>
+                           <label htmlFor="inputUrl">Website URL</label>
                            <input
                               type="url"
                               className="form-control"
@@ -37,7 +37,7 @@ export default function EditProperty() {
                      </div>
                      {/* <!--ADDRESS--> */}
                      <div className="form-group">
-                        <label for="inputAddress">Address</label>
+                        <label htmlFor="inputAddress">Address</label>
                         <input
                            type="text"
                            className="form-control"
@@ -46,7 +46,7 @@ export default function EditProperty() {
                         />
                      </div>
                      <div className="form-group">
-                        <label for="inputAddress2">Address 2</label>
+                        <label htmlFor="inputAddress2">Address 2</label>
                         <input
                            type="text"
                            className="form-control"
@@ -57,7 +57,7 @@ export default function EditProperty() {
                      {/* <!--CITY STATE ZIP COUNTRY--> */}
                      <div className="form-row">
                         <div className="form-group col-md-12">
-                           <label for="inputCity">City</label>
+                           <label htmlFor="inputCity">City</label>
                            <input
                               type="text"
                               className="form-control"
@@ -69,7 +69,7 @@ export default function EditProperty() {
                      {/* <!--State Abbreviation--> */}
                      <div className="form-row">
                         <div className="form-group col-md-4">
-                           <label for="inputState">State</label>
+                           <label htmlFor="inputState">State</label>
                            <select id="inputState" className="form-control">
                               <option value="NV">Nevada</option>
                               <option value="AL">Alabama</option>
@@ -126,7 +126,7 @@ export default function EditProperty() {
                            </select>
                         </div>
                         <div className="form-group col-md-4">
-                           <label for="inputZip">Zip</label>
+                           <label htmlFor="inputZip">Zip</label>
                            <input
                               type="text"
                               className="form-control"
@@ -136,7 +136,7 @@ export default function EditProperty() {
                         </div>
                         {/* <!-- Country Abbreviation --> */}
                         <div className="form-group col-md-4">
-                           <label for="inputState">Country</label>
+                           <label htmlFor="inputState">Country</label>
                            <select id="inputState" className="form-control">
                               <option value="US">United States</option>
                               <option value="AF">Afghanistan</option>
@@ -453,7 +453,7 @@ export default function EditProperty() {
                      {/* <!-- country code & phone number--> */}
                      <div className="form-row">
                         <div className="form-group col-md-12">
-                           <label for="inputPhone">Phone Number</label>
+                           <label htmlFor="inputPhone">Phone Number</label>
                            <input
                               type="phone"
                               className="form-control"
@@ -477,7 +477,7 @@ export default function EditProperty() {
                            />
                            <label
                               className="form-check-label"
-                              for="OutdoorPool"
+                              htmlFor="OutdoorPool"
                            >
                               Outdoor Pool
                            </label>
@@ -490,7 +490,7 @@ export default function EditProperty() {
                               id="Spa"
                               value="option4"
                            />
-                           <label className="form-check-label" for="Spa">
+                           <label className="form-check-label" htmlFor="Spa">
                               Spa
                            </label>
                         </div>
@@ -502,7 +502,10 @@ export default function EditProperty() {
                               id="SmokeFree"
                               value="option7"
                            />
-                           <label className="form-check-label" for="SmokeFree">
+                           <label
+                              className="form-check-label"
+                              htmlFor="SmokeFree"
+                           >
                               Smoke-free
                            </label>
                         </div>

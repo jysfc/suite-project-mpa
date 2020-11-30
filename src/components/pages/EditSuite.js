@@ -35,14 +35,14 @@ export default function EditSuite() {
                            <label
                               className="custom-file-label"
                               disabled
-                              for="customFile"
+                              htmlFor="customFile"
                            >
                               Image upload
                            </label>
                         </div>
                         {/* <!--NAME & BEDROOMS--> */}
                         <div className="form-group">
-                           <label for="inputSuite">Name of suite</label>
+                           <label htmlFor="inputSuite">Name of suite</label>
                            <input
                               type="text"
                               className="form-control"
@@ -51,7 +51,9 @@ export default function EditSuite() {
                            />
                         </div>
                         <div className="form-group">
-                           <label for="inputBedrooms">Number of bedrooms</label>
+                           <label htmlFor="inputBedrooms">
+                              Number of bedrooms
+                           </label>
                            <input
                               type="text"
                               className="form-control"
@@ -62,7 +64,7 @@ export default function EditSuite() {
                         {/* <!--ROW OF BEDS--> */}
                         <div className="form-row">
                            <div className="form-group col-4">
-                              <label for="inputKingBed">King beds</label>
+                              <label htmlFor="inputKingBed">King beds</label>
                               <input
                                  type="text"
                                  className="form-control"
@@ -71,7 +73,7 @@ export default function EditSuite() {
                               />
                            </div>
                            <div className="form-group col-4">
-                              <label for="inputQueenBed">Queen beds</label>
+                              <label htmlFor="inputQueenBed">Queen beds</label>
                               <input
                                  type="text"
                                  className="form-control"
@@ -80,7 +82,7 @@ export default function EditSuite() {
                               />
                            </div>
                            <div className="form-group col-4">
-                              <label for="inputFullBed">Full beds</label>
+                              <label htmlFor="inputFullBed">Full beds</label>
                               <input
                                  type="text"
                                  className="form-control"
@@ -92,7 +94,7 @@ export default function EditSuite() {
                         {/* <!--SQFT and MAX GST--> */}
                         <div className="form-row">
                            <div className="form-group col-6">
-                              <label for="inputSqft">Square ft.</label>
+                              <label htmlFor="inputSqft">Square ft.</label>
                               <input
                                  type="text"
                                  className="form-control"
@@ -101,7 +103,7 @@ export default function EditSuite() {
                               />
                            </div>
                            <div className="form-group col-6">
-                              <label for="inputMaxGuest">Max Guests</label>
+                              <label htmlFor="inputMaxGuest">Max Guests</label>
                               <input
                                  type="text"
                                  className="form-control"
@@ -123,7 +125,10 @@ export default function EditSuite() {
                                  id="wifi"
                                  value="option1"
                               />
-                              <label className="form-check-label" for="wifi">
+                              <label
+                                 className="form-check-label"
+                                 htmlFor="wifi"
+                              >
                                  WiFi
                               </label>
                            </div>
@@ -134,7 +139,7 @@ export default function EditSuite() {
                                  id="tv"
                                  value="option2"
                               />
-                              <label className="form-check-label" for="tv">
+                              <label className="form-check-label" htmlFor="tv">
                                  TV
                               </label>
                            </div>
@@ -147,7 +152,7 @@ export default function EditSuite() {
                               />
                               <label
                                  className="form-check-label"
-                                 for="inRoomSafe"
+                                 htmlFor="inRoomSafe"
                               >
                                  In-Room Safe
                               </label>
@@ -161,7 +166,7 @@ export default function EditSuite() {
                               />
                               <label
                                  className="form-check-label"
-                                 for="accessible"
+                                 htmlFor="accessible"
                               >
                                  Accessible
                               </label>

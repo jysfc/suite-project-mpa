@@ -58,7 +58,7 @@ class SignUp extends React.Component {
             passwordError: "Please create a password.",
             hasPasswordError: true,
          });
-      } else if (passwordInput.length <= 9) {
+      } else if (passwordInput.length < 9) {
          this.setState({
             passwordError: "Your password must be at least 9 characters.",
             hasPasswordError: true,
@@ -81,8 +81,8 @@ class SignUp extends React.Component {
    }
 
    async validateAndCreateUser() {
-      const emailInput = document.getElementById("sign-up-email-input").value;
-      const passwordInput = document.getElementById("sign-up-password-input")
+      const emailInput = document.getElementById("signup-email-input").value;
+      const passwordInput = document.getElementById("signup-password-input")
          .value;
       await this.setEmailState(emailInput);
       await this.setPasswordState(passwordInput, emailInput);
@@ -117,7 +117,7 @@ class SignUp extends React.Component {
                      onClick={() => {
                         this.showInputs();
                      }}
-                     id="sign-up-button"
+                     id="signup-button"
                      style={{ width: "100%" }}
                   >
                      Sign up
@@ -133,7 +133,7 @@ class SignUp extends React.Component {
                         </p>
                         <div className="form-group">
                            <label
-                              htmlFor="sign-up-email-input"
+                              htmlFor="signup-email-input"
                               className="text-muted lead"
                            >
                               Email address
@@ -145,12 +145,12 @@ class SignUp extends React.Component {
                                  "mb-2": true,
                                  "is-invalid": this.state.hasEmailError,
                               })}
-                              id="sign-up-email-input"
+                              id="signup-email-input"
                            />
                            {this.state.hasEmailError && (
                               <p
                                  className="text-danger"
-                                 id="sign-up-email-error"
+                                 id="signup-email-error"
                               >
                                  {this.state.emailError}
                               </p>
@@ -158,7 +158,7 @@ class SignUp extends React.Component {
                         </div>
                         <div className="form-group">
                            <label
-                              htmlFor="sign-up-password-input"
+                              htmlFor="signup-password-input"
                               className="text-muted lead"
                            >
                               Create a password
@@ -173,13 +173,13 @@ class SignUp extends React.Component {
                                  "mb-2": true,
                                  "is-invalid": this.state.hasPasswordError,
                               })}
-                              id="sign-up-password-input"
+                              id="signup-password-input"
                            />
 
                            {this.state.hasPasswordError && (
                               <p
                                  className="text-danger"
-                                 id="sign-up-password-error"
+                                 id="signup-password-error"
                               >
                                  {this.state.passwordError}
                               </p>
