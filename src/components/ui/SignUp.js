@@ -23,15 +23,15 @@ class SignUp extends React.Component {
       });
    }
 
-   async setEmailState(emailInput) {
-      const lowerCaseEmailInput = emailInput.toLowerCase();
-      if (emailInput === "")
+   async setEmailState(signupEmailInput) {
+      const lowerCaseSignupEmailInput = signupEmailInput.toLowerCase();
+      if (signupEmailInput === "")
          this.setState({
             emailError: "Please enter your email address.",
             hasEmailError: true,
          });
-      else if (EMAIL_REGEX.test(lowerCaseEmailInput) === false) {
-         console.log(emailInput);
+      else if (EMAIL_REGEX.test(lowerCaseSignupEmailInput) === false) {
+         console.log(signupEmailInput);
          this.setState({
             emailError: "Please enter a valid email address.",
             hasEmailError: true,
@@ -41,29 +41,31 @@ class SignUp extends React.Component {
       }
    }
 
-   checkHasLocalPart(passwordInput, emailInput) {
-      const localPart = emailInput.split("@")[0];
+   checkHasLocalPart(signupPasswordInput, signupEmailInput) {
+      const localPart = signupEmailInput.split("@")[0];
       if (localPart === "") return false;
       else if (localPart.length < 4) return false;
-      else return passwordInput.includes(localPart);
+      else return signupPasswordInput.includes(localPart);
    }
 
-   async setPasswordState(passwordInput, emailInput) {
-      console.log(passwordInput);
+   async setPasswordState(signupPasswordInput, signupEmailInput) {
+      console.log(signupPasswordInput);
 
-      const uniqChars = [...new Set(passwordInput)];
+      const uniqChars = [...new Set(signupPasswordInput)];
 
-      if (passwordInput === "") {
+      if (signupPasswordInput === "") {
          this.setState({
             passwordError: "Please create a password.",
             hasPasswordError: true,
          });
-      } else if (passwordInput.length < 9) {
+      } else if (signupPasswordInput.length < 9) {
          this.setState({
             passwordError: "Your password must be at least 9 characters.",
             hasPasswordError: true,
          });
-      } else if (this.checkHasLocalPart(passwordInput, emailInput)) {
+      } else if (
+         this.checkHasLocalPart(signupPasswordInput, signupEmailInput)
+      ) {
          this.setState({
             passwordError:
                "For your safety, your password cannot contain your email address.",
@@ -81,19 +83,21 @@ class SignUp extends React.Component {
    }
 
    async validateAndCreateUser() {
-      const emailInput = document.getElementById("signup-email-input").value;
-      const passwordInput = document.getElementById("signup-password-input")
+      const signupEmailInput = document.getElementById("signup-email-input")
          .value;
-      await this.setEmailState(emailInput);
-      await this.setPasswordState(passwordInput, emailInput);
+      const signupPasswordInput = document.getElementById(
+         "signup-password-input"
+      ).value;
+      await this.setEmailState(signupEmailInput);
+      await this.setPasswordState(signupPasswordInput, signupEmailInput);
       if (
          this.state.hasEmailError === false &&
          this.state.hasPasswordError === false
       ) {
          const user = {
             id: getUuid(),
-            email: emailInput,
-            password: hash(passwordInput),
+            email: signupEmailInput,
+            password: hash(signupPasswordInput),
             createdAt: Date.now(),
          };
          console.log(user);
