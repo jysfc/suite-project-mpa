@@ -1,6 +1,5 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
-import { safelyParseJson } from "../../utils/helpers";
 import orderBy from "lodash/orderBy";
 import SuitePrev from "../ui/SuitePrev";
 import suites from "../../data/suites";
@@ -8,18 +7,49 @@ import suites from "../../data/suites";
 export default class Index extends React.Component {
    constructor(props) {
       super(props);
-      const activeSuites = suites.filter((suite) => {
-         return suite.isActive;
-      }); // imagine we are returning the filtered results from a API
-      const defaultOrder = '["postedAt", "desc"]';
-      const params = safelyParseJson(defaultOrder);
-      const orderedSuites = orderBy(activeSuites, ...params);
       this.state = {
-         activeSuites: orderedSuites,
-         displayedSuites: orderedSuites,
-         searchInput: "",
-         suiteOrder: defaultOrder,
+         order: '[["propertyCity"], ["desc"]]',
+         displayedSuites: orderBy(suites, ["propertyCity"], ["desc"]),
+         allSuites: orderBy(suites, ["propertyCity"], ["desc"]),
       };
+   }
+
+   filterByInput() {
+      const input = document.getElementById("search-input").value;
+      const lowerCasedInput = input.toLowerCase();
+      console.log(lowerCasedInput);
+      const copyOfAllSuites = [...this.state.allSuites];
+      const filteredSuites = copyOfAllSuites.filter((suite) => {
+         const lowerCasedPropertyCity = suite.propertyCity.toLowerCase();
+         const lowerCasedPropertyZip = suite.propertyZip.toLowerCase();
+         if (
+            lowerCasedPropertyCity.includes(lowerCasedInput) ||
+            lowerCasedPropertyZip.includes(lowerCasedInput)
+         ) {
+            return true;
+         } else return false;
+      });
+      this.setState({ displayedSuites: filteredSuites }, () => {
+         this.setSuites();
+      });
+   }
+
+   setOrder(e) {
+      const newOrder = e.target.value;
+      console.log(newOrder);
+      this.setState({ order: newOrder }, () => {
+         this.setSuites();
+      });
+   }
+
+   setSuites() {
+      console.log("setting suites");
+      const copyOfDisplayedSuites = [...this.state.displayedSuites];
+      const toJson = JSON.parse(this.state.order);
+      console.log(...toJson);
+      const orderedSuites = orderBy(copyOfDisplayedSuites, ...toJson);
+      console.log(orderedSuites);
+      this.setState({ displayedSuites: orderedSuites });
    }
 
    render() {
@@ -31,21 +61,25 @@ export default class Index extends React.Component {
                   <input
                      type="text"
                      className="form-control"
-                     id="City"
+                     id="search-input"
                      placeholder="Las Vegas, NV"
                   />
                </div>
                <div className="col-sm-3">
                   <select id="inputBeds" className="form-control">
-                     <option value="3">3 beds</option>
-                     <option value="1">1 bed</option>
-                     <option value="2">2 beds</option>
-                     <option value="3">3 beds</option>
-                     <option value="4">4 beds</option>
+                     <option value='["totalBed"]'>3 beds</option>
+                     <option value='["totalBed"]'>1 bed</option>
+                     <option value='["totalBed"]'>2 beds</option>
+                     <option value='["totalBed"]'>3 beds</option>
+                     <option value='["totalBed"]'>4 beds</option>
                   </select>
                </div>
                <div className="col-sm-2 float-right">
-                  <button className="btn btn-primary" type="submit">
+                  <button
+                     className="btn btn-primary"
+                     type="submit"
+                     onClick={() => this.filterByInput()}
+                  >
                      Search
                   </button>
                </div>
