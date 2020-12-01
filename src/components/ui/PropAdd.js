@@ -1,19 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SaveIcon from "../../icons/save.svg";
+import classnames from "classnames";
+import { MAX_CARD_CHARS } from "../../utils/helpers";
 
 export default class PropAdd extends React.Component {
    constructor(props) {
       super(props);
+      this.state = {
+         inputHotel: "",
+      };
+   }
+
+   checkHasInvalidCharCount() {
+      if (
+         this.state.inputHotel.length > MAX_CARD_CHARS ||
+         this.state.inputHotel.length === 0
+      ) {
+         return true;
+      } else return false;
+   }
+
+   setInputHotel(e) {
+      this.setState({ inputHotel: e.target.value });
    }
 
    render() {
       return (
          <>
             {/* <!--CoLUMN LEFT EDIT PROP--> */}
-
             {/* <!--HOTEL & URL--> */}
-
             <div className="form-group">
                <label htmlFor="inputHotel">Hotel</label>
                <input
@@ -21,6 +37,8 @@ export default class PropAdd extends React.Component {
                   className="form-control"
                   id="inputHotel"
                   placeholder="The Mirage Hotel & Casino"
+                  defaultValue={this.state.inputHotel}
+                  onChange={(e) => this.setInputHotel(e)}
                />
             </div>
             <div className="form-group">
@@ -153,8 +171,9 @@ export default class PropAdd extends React.Component {
 
             <Link
                to="/edit-property"
-               className="btn btn-primary btn-block mb-4"
-               c
+               className={classnames("btn btn-primary btn-block mb-4", {
+                  disabled: this.checkHasInvalidCharCount(),
+               })}
                id="save"
             >
                <img
