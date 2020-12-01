@@ -4,7 +4,7 @@ import SaveIcon from "../../icons/save.svg";
 import classnames from "classnames";
 import { MAX_CARD_CHARS } from "../../utils/helpers";
 
-export default class PropAdd extends React.Component {
+export default class PropInput extends React.Component {
    constructor(props) {
       super(props);
       this.state = {

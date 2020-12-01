@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import SuiteAddIcon from "../../icons/suite-add.svg";
 import SuiteAvail from "../ui/SuiteAvail";
 import { users } from "../../data/users";
-import PropAdd from "../ui/PropAdd";
+import PropInput from "../ui/PropInput";
 
 export default function EditProperty() {
    return (
@@ -14,7 +14,7 @@ export default function EditProperty() {
                <div className="row">
                   {/* <!--CoLUMN LEFT EDIT PROP--> */}
                   <div className="col-sm-6">
-                     <PropAdd />
+                     <PropInput />
                   </div>
                   {/* <!--COLUMN RIGHT PROP RESULT--> */}
                   <div className="col-sm-6">
