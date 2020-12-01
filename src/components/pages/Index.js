@@ -66,13 +66,19 @@ export default class Index extends React.Component {
                   />
                </div>
                <div className="col-sm-3">
-                  <select id="inputBeds" className="form-control">
-                     <option value='["totalBed"]'>3 beds</option>
-                     <option value='["totalBed"]'>1 bed</option>
-                     <option value='["totalBed"]'>2 beds</option>
-                     <option value='["totalBed"]'>3 beds</option>
-                     <option value='["totalBed"]'>4 beds</option>
+                  <select
+                     id="inputBeds"
+                     className="form-control"
+                     onChange={this.change}
+                     value={this.state.value}
+                  >
+                     <option value='[("kingBed")+("queenBed")]'>3 beds</option>
+                     <option value='[("kingBed")+("queenBed")]'>1 bed</option>
+                     <option value='[("kingBed")+("queenBed")]'>2 beds</option>
+                     <option value='[("kingBed")+("queenBed")]'>3 beds</option>
+                     <option value='[("kingBed")+("queenBed")]'>4 beds</option>
                   </select>
+                  <p>{this.state.value}</p>
                </div>
                <div className="col-sm-2 float-right">
                   <button
