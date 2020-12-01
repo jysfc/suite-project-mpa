@@ -14,24 +14,26 @@ export default class Index extends React.Component {
       };
    }
 
-   filterByInput() {
+   filterSuites() {
       const input = document.getElementById("search-input").value;
       const lowerCasedInput = input.toLowerCase();
+      const selectInput = document.getElementById("inputBeds").value;
+      console.log(selectInput);
       console.log(lowerCasedInput);
-      const copyOfAllSuites = [...this.state.allSuites];
-      const filteredSuites = copyOfAllSuites.filter((suite) => {
+      const filteredSuites = this.state.allSuites.filter((suite) => {
          const lowerCasedPropertyCity = suite.propertyCity.toLowerCase();
-         const lowerCasedPropertyZip = suite.propertyZip.toLowerCase();
+         const totalBeds =
+            suite.totalFullBed + suite.totalKingBed + suite.totalQueenBed;
+         console.log(totalBeds);
          if (
-            lowerCasedPropertyCity.includes(lowerCasedInput) ||
-            lowerCasedPropertyZip.includes(lowerCasedInput)
+            (lowerCasedPropertyCity.includes(lowerCasedInput) ||
+               suite.propertyZip.includes(lowerCasedInput)) &&
+            totalBeds === Number(selectInput)
          ) {
             return true;
          } else return false;
       });
-      this.setState({ displayedSuites: filteredSuites }, () => {
-         this.setSuites();
-      });
+      this.setState({ displayedSuites: filteredSuites });
    }
 
    setOrder(e) {
@@ -40,16 +42,6 @@ export default class Index extends React.Component {
       this.setState({ order: newOrder }, () => {
          this.setSuites();
       });
-   }
-
-   setSuites() {
-      console.log("setting suites");
-      const copyOfDisplayedSuites = [...this.state.displayedSuites];
-      const toJson = JSON.parse(this.state.order);
-      console.log(...toJson);
-      const orderedSuites = orderBy(copyOfDisplayedSuites, ...toJson);
-      console.log(orderedSuites);
-      this.setState({ displayedSuites: orderedSuites });
    }
 
    render() {
@@ -69,22 +61,18 @@ export default class Index extends React.Component {
                   <select
                      id="inputBeds"
                      className="form-control"
-                     onChange={this.change}
-                     value={this.state.value}
+                     defaultValue="3"
                   >
-                     <option value='[("kingBed")+("queenBed")]'>3 beds</option>
-                     <option value='[("kingBed")+("queenBed")]'>1 bed</option>
-                     <option value='[("kingBed")+("queenBed")]'>2 beds</option>
-                     <option value='[("kingBed")+("queenBed")]'>3 beds</option>
-                     <option value='[("kingBed")+("queenBed")]'>4 beds</option>
+                     <option value="1">1 bed</option>
+                     <option value="2">2 beds</option>
+                     <option value="3">3 beds</option>
+                     <option value="4">4 beds</option>
                   </select>
-                  <p>{this.state.value}</p>
                </div>
                <div className="col-sm-2 float-right">
                   <button
                      className="btn btn-primary"
-                     type="submit"
-                     onClick={() => this.filterByInput()}
+                     onClick={() => this.filterSuites()}
                   >
                      Search
                   </button>
