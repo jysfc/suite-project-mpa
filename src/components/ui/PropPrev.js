@@ -5,7 +5,7 @@ import RemoveIcon from "../../icons/remove.svg";
 export default function PropPrev(props) {
    return (
       //<!-- Property -->
-      <div className="col mb-4 mr-2 shadow p-3 mb-5 bg-white rounded">
+      <div className="col my-6 mr-2 shadow p-3 bg-white rounded">
          <Link
             to="edit-property"
             className="text-dark text-decoration-none"
@@ -13,7 +13,6 @@ export default function PropPrev(props) {
          >
             <h5>{props.user.properties[0].name}</h5>
          </Link>
-         <p> </p>
 
          <Link to="" className="text-danger text-decoration-none float-right">
             <img src={RemoveIcon} width="20px" id="hotel-add" alt="" />
