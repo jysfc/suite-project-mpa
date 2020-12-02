@@ -18,13 +18,13 @@ export default function EditProperty() {
                   </div>
                   {/* <!--COLUMN RIGHT PROP RESULT--> */}
                   <div className="col-sm-6">
-                     {/* <!--RESULT 1--> */}
+                     {/* <!--RESULTS--> */}
                      {users.map((user) => {
                         return <SuiteAvail user={user} key={user.id} />;
                      })}
 
                      {/* <!--NEW PROP--> */}
-                     <div className="col mb-4">
+                     <div className="col">
                         <Link
                            to="/edit-suite"
                            className="text-decoration-none"
