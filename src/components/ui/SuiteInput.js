@@ -34,7 +34,7 @@ export default class SuiteInput extends React.Component {
             <form className="md-form">
                <img
                   src={suite.image}
-                  className="img-fluid mb-4"
+                  className="img-fluid mb-4 crop"
                   alt={suite.title}
                />
                {/* <!--URL image (link)--> */}
