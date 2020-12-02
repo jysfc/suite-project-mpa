@@ -12,7 +12,7 @@ export default function Header() {
             </Link>
 
             <Link
-               to="login"
+               to="loginAndSignUp"
                className="btn btn-link float-right text-decoration-none"
             >
                Log in

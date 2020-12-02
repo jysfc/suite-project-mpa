@@ -10,7 +10,11 @@ export default function SuitePrev(props) {
       >
          <div className="row">
             <div className="col-md-5 mt-2 crop">
-               <img src={props.image} className="img-fluid" alt={props.title} />
+               <img
+                  src={props.suite.image}
+                  className="img-fluid"
+                  alt={props.suite.title}
+               />
             </div>
             <div className="col-md-7">
                <div className="text-muted">
@@ -19,15 +23,16 @@ export default function SuitePrev(props) {
                      className="text-dark text-decoration-none"
                      type="button"
                   >
-                     <h2>{props.title}</h2>
+                     <h2>{props.suite.title}</h2>
                   </Link>
-                  <p className="text-dark lead">{props.property}</p>
+                  <p className="text-dark lead">{props.suite.property}</p>
                   <p>
-                     {props.squareFt} sq. ft · {props.maxGuest} max guests
+                     {props.suite.squareFt} sq. ft · {props.suite.maxGuest} max
+                     guests
                   </p>
                   <p>
-                     {props.totalKingBed} king bed · {props.totalQueenBed} queen
-                     beds
+                     {props.suite.totalKingBed} king bed ·{" "}
+                     {props.suite.totalQueenBed} queen beds
                   </p>
 
                   <p className="card-text"></p>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "./components/pages/Index";
 import EditProperty from "./components/pages/EditProperty";
 import EditSuite from "./components/pages/EditSuite";
-import Login from "./components/pages/Login";
+import LoginAndSignUp from "./components/pages/LoginAndSignUp";
 import SelectProperty from "./components/pages/SelectProperty";
 import Suite from "./components/pages/Suite";
 import NotFound from "./components/pages/NotFound";
@@ -16,7 +16,7 @@ export default function App() {
             <Route exact path="/" component={Index} />
             <Route exact path="/edit-property" component={EditProperty} />
             <Route exact path="/edit-suite" component={EditSuite} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/loginAndSignUp" component={LoginAndSignUp} />
             <Route exact path="/select-property" component={SelectProperty} />
             <Route exact path="/suite" component={Suite} />
             <Route component={NotFound} />

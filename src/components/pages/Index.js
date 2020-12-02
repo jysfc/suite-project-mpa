@@ -80,18 +80,7 @@ export default class Index extends React.Component {
             </div>
             {/* <!--results--> */}
             {this.state.displayedSuites.map((suite) => {
-               return (
-                  <SuitePrev
-                     title={suite.title}
-                     image={suite.image}
-                     property={suite.property}
-                     squareFt={suite.squareFt}
-                     maxGuest={suite.maxGuest}
-                     totalKingBed={suite.totalKingBed}
-                     totalQueenBed={suite.totalQueenBed}
-                     key={suite.id}
-                  />
-               );
+               return <SuitePrev PropInfo suite={suite} key={suite.id} />;
             })}
          </AppTemplate>
       );
