@@ -13,6 +13,7 @@ const suiteSchema = {
    propertyPhoneCountryCode: string,
    propertyPhoneAreaCode: string,
    propertyPhoneNumber: string,
+   image: string,
    squareFt: number,
    maxGuest: number,
    totalKingBed: number,
