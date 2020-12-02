@@ -4,6 +4,7 @@ const userSchema = [
       email: string,
       password: string,
       createdAt: number,
+      isActive: boolean,
       properties: [
          {
             suiteId: string,
@@ -20,6 +21,7 @@ const userSchema = [
             phoneCountryCode: string,
             phoneAreaCode: string,
             phoneNumber: string,
+            image: string,
             selfParking: string,
             valetParking: string,
             hasOutdoorPool: boolean,

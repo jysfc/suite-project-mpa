@@ -21,8 +21,8 @@ export const users = [
             phoneCountryCode: `+1`,
             phoneAreaCode: `702`,
             phoneNumber: `7917111`, //just numbers
-            selfParking: `Free`,
             image: `https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-hospitality-suite-living-area-architectural.tif.image.892.668.high.jpg`,
+            selfParking: `Free`,
             valetParking: `N/A`,
             hasOutdoorPool: true,
             hasSpa: true,
@@ -44,8 +44,8 @@ export const users = [
             phoneCountryCode: `+1`,
             phoneAreaCode: `702`,
             phoneNumber: `7917111`, //just numbers
-            selfParking: `Free`,
             image: `https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-penthouse-suite-living-area-table-architectural.tif.image.1488.836.high.jpg`,
+            selfParking: `Free`,
             valetParking: `N/A`,
             hasOutdoorPool: true,
             hasSpa: true,
