@@ -4,7 +4,7 @@ const suites = [
       title: `Two Bedroom Hospitality Suite`,
       property: `The Mirage Hotel & Casino`,
       propertyId: `76e032b2-8ba6-4487-818c-5290cdbb5a1c`,
-      propertyWebsite: `mirage.com`,
+      propertyWebsite: `https://mirage.com`,
       propertyAddress1: `3400 S Las Vegas Blvd`,
       propertyAddress2: ``,
       propertyCity: `Las Vegas`,

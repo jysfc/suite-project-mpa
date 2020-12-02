@@ -15,7 +15,7 @@ export default function SuiteAvail(props) {
                <img
                   src={props.user.properties[0].image}
                   className="img-fluid"
-                  alt=""
+                  alt={props.user.properties[0].title}
                />
                <div className="col-md-7 mt-2">
                   <div className="text-muted">

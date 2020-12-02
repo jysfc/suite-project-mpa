@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MIRHOS from "../../images/MIRHOS.jpg";
 import SaveIcon from "../../icons/save.svg";
+import suites from "../../data/suites";
 import classnames from "classnames";
 import { MAX_CARD_CHARS } from "../../utils/helpers";
+const suite = suites[0];
 
 export default class SuiteInput extends React.Component {
    constructor(props) {
@@ -31,7 +32,11 @@ export default class SuiteInput extends React.Component {
          // <!--COLUMN RIGHT EDIT SUITE-->
          <div className="col-12 col-md-6">
             <form className="md-form">
-               <img src={MIRHOS} className="img-fluid mb-4" alt="Mir Hosp" />
+               <img
+                  src={suite.image}
+                  className="img-fluid mb-4"
+                  alt={suite.title}
+               />
                {/* <!--URL image (link)--> */}
                <div className="custom-file mb-4" disabled>
                   <input

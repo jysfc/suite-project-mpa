@@ -19,7 +19,7 @@ export default function Suite(props) {
             <div className="col-12 col-md-6">
                <form className="md-form">
                   <Link
-                     to={{ pathname: "https://mirage.com" }}
+                     to={{ pathname: suite.propertyWebsite }}
                      target="_blank"
                      className="btn btn-primary btn-block mb-4"
                      type="book-now"
@@ -31,7 +31,7 @@ export default function Suite(props) {
                   <img
                      src={suite.image}
                      className="img-fluid mb-4"
-                     alt="Mir Hosp"
+                     alt={suite.title}
                   />
                   {/* <!--SUITE INFO--> */}
                   <ul className="list-unstyled">
