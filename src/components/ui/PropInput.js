@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SaveIcon from "../../icons/save.svg";
 import classnames from "classnames";
-import { MAX_CARD_CHARS } from "../../utils/helpers";
+import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
 
 export default class PropInput extends React.Component {
    constructor(props) {
@@ -41,6 +41,21 @@ export default class PropInput extends React.Component {
                   onChange={(e) => this.setInputHotel(e)}
                />
             </div>
+            <p
+               className="float-right my-n4 text-muted d-flex ml-4"
+               id="Hotel-characters"
+            >
+               <span
+                  className={classnames({
+                     "text-danger": checkIsOver(
+                        this.state.inputHotel,
+                        MAX_CARD_CHARS
+                     ),
+                  })}
+               >
+                  {this.state.inputHotel.length}/{MAX_CARD_CHARS}
+               </span>
+            </p>
             <div className="form-group">
                <label htmlFor="inputUrl">Website URL</label>
                <input

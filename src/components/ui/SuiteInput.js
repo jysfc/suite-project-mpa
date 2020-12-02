@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SaveIcon from "../../icons/save.svg";
 import suites from "../../data/suites";
 import classnames from "classnames";
-import { MAX_CARD_CHARS } from "../../utils/helpers";
+import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
 const suite = suites[0];
 
 export default class SuiteInput extends React.Component {
@@ -65,6 +65,21 @@ export default class SuiteInput extends React.Component {
                      onChange={(e) => this.setInputSuite(e)}
                   />
                </div>
+               <p
+                  className="float-right my-n4 text-muted d-flex ml-4"
+                  id="suite-characters"
+               >
+                  <span
+                     className={classnames({
+                        "text-danger": checkIsOver(
+                           this.state.inputSuite,
+                           MAX_CARD_CHARS
+                        ),
+                     })}
+                  >
+                     {this.state.inputSuite.length}/{MAX_CARD_CHARS}
+                  </span>
+               </p>
                <div className="form-group">
                   <label htmlFor="inputBedrooms">Number of bedrooms</label>
                   <input
