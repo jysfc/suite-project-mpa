@@ -5,7 +5,7 @@ import combineReducers from "./combineReducers";
 const initialState = {
    currentUser: {},
    queue: {
-      hotels: [],
+      suites: [],
       index: 0,
    },
 };

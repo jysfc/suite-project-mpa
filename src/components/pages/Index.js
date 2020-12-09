@@ -3,6 +3,7 @@ import AppTemplate from "../ui/AppTemplate";
 import orderBy from "lodash/orderBy";
 import SuitePrev from "../ui/SuitePrev";
 import suites from "../../data/suites";
+import axios from "axios";
 
 export default class Index extends React.Component {
    constructor(props) {
@@ -12,6 +13,24 @@ export default class Index extends React.Component {
          displayedSuites: orderBy(suites, ["propertyCity"], ["desc"]),
          allSuites: orderBy(suites, ["propertyCity"], ["desc"]),
       };
+   }
+   componentDidMount() {
+      axios
+         .get(
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/suites.json"
+         )
+         .then((res) => {
+            // handle success
+            const suites = res.data;
+            this.setState({
+               displayedSuites: orderBy(suites, ["createdAt"], ["desc"]),
+               allSuites: orderBy(suites, ["createdAt"], ["desc"]),
+            });
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
    }
 
    filterSuites() {
