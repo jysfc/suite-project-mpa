@@ -60,7 +60,7 @@ export default class SuiteInput extends React.Component {
                      type="text"
                      className="form-control"
                      id="inputSuite"
-                     placeholder="Two Bedroom Hospitality Suite"
+                     placeholder={suite.title}
                      defaultValue={this.state.inputSuite}
                      onChange={(e) => this.setInputSuite(e)}
                   />

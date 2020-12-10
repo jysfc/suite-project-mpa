@@ -28,7 +28,7 @@ class Header extends React.Component {
                      this.logOutCurrentUser();
                   }}
                >
-                  Admin Log in/out
+                  Log in
                </Link>
                <div className="clearfix"></div>
             </div>

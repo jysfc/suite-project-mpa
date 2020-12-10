@@ -17,6 +17,6 @@ export default function queue(queue = {}, action) {
          newQueue.index = 0;
          return newQueue;
       default:
-         return state;
+         return queue;
    }
 }
