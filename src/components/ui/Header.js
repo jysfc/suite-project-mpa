@@ -24,6 +24,9 @@ class Header extends React.Component {
                <Link
                   to="loginAndSignUp"
                   className="btn btn-link float-right text-decoration-none"
+                  onClick={() => {
+                     this.logOutCurrentUser();
+                  }}
                >
                   Admin Log in/out
                </Link>
