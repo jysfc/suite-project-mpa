@@ -2,13 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SaveIcon from "../../icons/save.svg";
 import classnames from "classnames";
-import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
+import axios from "axios";
+import actions from "../../store/actions";
+import { connect } from "react-redux";
+import {
+   checkIsOver,
+   MAX_CARD_CHARS,
+   safelyParseJson,
+} from "../../utils/helpers";
 
-export default class PropInput extends React.Component {
+class PropInput extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
          inputHotel: "",
+         inputUrl: "",
+         inputAddress: "",
+         inputAddress2: "",
+         inputCity: "",
+         inputState: "",
+         inputZip: "",
+         inputCountry: "",
+         inputPhone: "",
+         hasOutdoorPool: false,
+         hasSpa: false,
+         isSmokeFree: false,
       };
    }
 
@@ -20,9 +38,36 @@ export default class PropInput extends React.Component {
          return true;
       } else return false;
    }
+   // setInputHotel(e) {
+   //    this.setState({ inputHotel: e.target.value });
+   // }
+   updatePropInput(e) {
+      let value = e.target.value;
+      if (value === "true" || value === "false") {
+         value = safelyParseJson(value); // "true" will be into true str to boolean
+      }
+      this.setState({ [e.target.name]: value }); // set state based off target name
+   }
 
-   setInputHotel(e) {
-      this.setState({ inputHotel: e.target.value });
+   saveUpdatePropInput() {
+      // mimic API response:
+      axios
+         .get(
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users.json"
+         )
+         .then((res) => {
+            // handle success
+            const currentUser = res.data;
+            console.log(currentUser);
+            this.props.dispatch({
+               type: actions.UPDATE_CURRENT_USER,
+               payload: res.data,
+            });
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
    }
 
    render() {
@@ -38,7 +83,8 @@ export default class PropInput extends React.Component {
                   id="inputHotel"
                   placeholder="The Mirage Hotel & Casino"
                   defaultValue={this.state.inputHotel}
-                  onChange={(e) => this.setInputHotel(e)}
+                  name="inputHotel"
+                  onChange={(e) => this.updatePropInput(e)}
                />
             </div>
             <p
@@ -59,10 +105,13 @@ export default class PropInput extends React.Component {
             <div className="form-group">
                <label htmlFor="inputUrl">Website URL</label>
                <input
-                  type="url"
+                  type="text"
                   className="form-control"
                   id="inputUrl"
                   placeholder="www.mirage.com"
+                  defaultValue={this.state.inputUrl}
+                  name="inputUrl"
+                  onChange={(e) => this.updatePropInput(e)}
                />
             </div>
 
@@ -74,6 +123,9 @@ export default class PropInput extends React.Component {
                   className="form-control"
                   id="inputAddress"
                   placeholder="3400 S Las Vegas Blvd"
+                  defaultValue={this.state.inputAddress}
+                  name="inputAddress"
+                  onChange={(e) => this.updatePropInput(e)}
                />
             </div>
             <div className="form-group">
@@ -83,6 +135,9 @@ export default class PropInput extends React.Component {
                   className="form-control"
                   id="inputAddress2"
                   placeholder=""
+                  defaultValue={this.state.inputAddress2}
+                  name="inputAddress2"
+                  onChange={(e) => this.updatePropInput(e)}
                />
             </div>
             {/* <!--CITY STATE ZIP COUNTRY--> */}
@@ -94,6 +149,9 @@ export default class PropInput extends React.Component {
                      className="form-control"
                      id="inputCity"
                      placeholder="Las Vegas"
+                     defaultValue={this.state.inputCity}
+                     name="inputCity"
+                     onChange={(e) => this.updatePropInput(e)}
                   />
                </div>
             </div>
@@ -102,10 +160,17 @@ export default class PropInput extends React.Component {
             <div className="form-row">
                <div className="form-group col-md-4">
                   <label htmlFor="inputState">State</label>
-                  <select id="inputState" className="form-control">
-                     <option value="NV">Nevada</option>
+                  <select
+                     id="inputState"
+                     className="form-control"
+                     defaultValue={this.state.inputState}
+                     name="inputState"
+                     onChange={(e) => this.updatePropInput(e)}
+                  >
                      <option value="CA">California</option>
-                     <option value="NV">Nevada</option>
+                     <option value="NV" selected>
+                        Nevada
+                     </option>
                   </select>
                </div>
                <div className="form-group col-md-4">
@@ -115,16 +180,25 @@ export default class PropInput extends React.Component {
                      className="form-control"
                      id="inputZip"
                      placeholder="89109"
+                     defaultValue={this.state.inputZip}
+                     name="inputZip"
+                     onChange={(e) => this.updatePropInput(e)}
                   />
                </div>
                {/* <!-- Country Abbreviation --> */}
                <div className="form-group col-md-4">
                   <label htmlFor="inputState">Country</label>
-                  <select id="inputState" className="form-control">
-                     <option value="US">United States</option>
+                  <select
+                     id="inputCountry"
+                     className="form-control"
+                     defaultValue={this.state.inputCountry}
+                     name="inputCountry"
+                     onChange={(e) => this.updatePropInput(e)}
+                  >
                      <option value="SG">Singapore</option>
-                     <option value="GB">United Kingdom</option>
-                     <option value="US">United States</option>
+                     <option value="US" selected>
+                        United States
+                     </option>
                   </select>
                </div>
             </div>
@@ -138,6 +212,9 @@ export default class PropInput extends React.Component {
                      className="form-control"
                      id="inputPhone"
                      placeholder="702-791-7111"
+                     defaultValue={this.state.inputPhone}
+                     name="inputPhone"
+                     onChange={(e) => this.updatePropInput(e)}
                   />
                </div>
             </div>
@@ -152,7 +229,10 @@ export default class PropInput extends React.Component {
                      className="form-check-input"
                      type="checkbox"
                      id="OutdoorPool"
-                     value="option2"
+                     checked={this.state.hasOutdoorPool}
+                     name="hasOutdoorPool"
+                     value={!this.state.hasOutdoorPool}
+                     onChange={(e) => this.updatePropInput(e)}
                   />
                   <label className="form-check-label" htmlFor="OutdoorPool">
                      Outdoor Pool
@@ -164,7 +244,10 @@ export default class PropInput extends React.Component {
                      className="form-check-input"
                      type="checkbox"
                      id="Spa"
-                     value="option4"
+                     checked={this.state.hasSpa}
+                     name="hasSpa"
+                     value={!this.state.hasSpa}
+                     onChange={(e) => this.updatePropInput(e)}
                   />
                   <label className="form-check-label" htmlFor="Spa">
                      Spa
@@ -176,7 +259,10 @@ export default class PropInput extends React.Component {
                      className="form-check-input"
                      type="checkbox"
                      id="SmokeFree"
-                     value="option7"
+                     checked={this.state.isSmokeFree}
+                     name="isSmokeFree"
+                     value={!this.state.isSmokeFree}
+                     onChange={(e) => this.updatePropInput(e)}
                   />
                   <label className="form-check-label" htmlFor="SmokeFree">
                      Smoke-free
@@ -190,6 +276,9 @@ export default class PropInput extends React.Component {
                   disabled: this.checkHasInvalidCharCount(),
                })}
                id="save"
+               onClick={() => {
+                  this.saveUpdatePropInput();
+               }}
             >
                <img
                   src={SaveIcon}
@@ -204,3 +293,7 @@ export default class PropInput extends React.Component {
       );
    }
 }
+function mapStateToProps(state) {
+   return {};
+}
+export default connect(mapStateToProps)(PropInput);
