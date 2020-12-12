@@ -38,9 +38,7 @@ class PropInput extends React.Component {
          return true;
       } else return false;
    }
-   // setInputHotel(e) {
-   //    this.setState({ inputHotel: e.target.value });
-   // }
+
    updatePropInput(e) {
       let value = e.target.value;
       if (value === "true" || value === "false") {
