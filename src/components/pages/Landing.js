@@ -2,16 +2,17 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import orderBy from "lodash/orderBy";
 import SuitePrev from "../ui/SuitePrev";
-import suites from "../../data/suites";
 import axios from "axios";
+import { connect } from "react-redux";
+import actions from "../../store/actions";
 
-export default class Index extends React.Component {
+class Landing extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
          order: '[["propertyCity"], ["desc"]]',
-         displayedSuites: orderBy(suites, ["propertyCity"], ["desc"]),
-         allSuites: orderBy(suites, ["propertyCity"], ["desc"]),
+         displayedSuites: [],
+         allSuites: [],
       };
    }
    componentDidMount() {
@@ -25,6 +26,10 @@ export default class Index extends React.Component {
             this.setState({
                displayedSuites: orderBy(suites, ["createdAt"], ["desc"]),
                allSuites: orderBy(suites, ["createdAt"], ["desc"]),
+            });
+            this.props.dispatch({
+               type: actions.STORE_QUEUED_SUITES,
+               payload: res.data,
             });
          })
          .catch((error) => {
@@ -53,14 +58,6 @@ export default class Index extends React.Component {
          } else return false;
       });
       this.setState({ displayedSuites: filteredSuites });
-   }
-
-   setOrder(e) {
-      const newOrder = e.target.value;
-      console.log(newOrder);
-      this.setState({ order: newOrder }, () => {
-         this.setSuites();
-      });
    }
 
    render() {
@@ -105,3 +102,10 @@ export default class Index extends React.Component {
       );
    }
 }
+function mapStateToProps(state) {
+   return {
+      allSuites: state.allSuites,
+   };
+}
+
+export default connect(mapStateToProps)(Landing);

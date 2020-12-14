@@ -1,7 +1,7 @@
 import React from "react";
 import "./style/master.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Index from "./components/pages/Index";
+import Landing from "./components/pages/Landing";
 import EditProperty from "./components/pages/EditProperty";
 import EditSuite from "./components/pages/EditSuite";
 import LoginAndSignUp from "./components/pages/LoginAndSignUp";
@@ -13,7 +13,7 @@ export default function App() {
    return (
       <Router>
          <Switch>
-            <Route exact path="/" component={Index} />
+            <Route exact path="/" component={Landing} />
             <Route exact path="/edit-property" component={EditProperty} />
             <Route exact path="/edit-suite" component={EditSuite} />
             <Route exact path="/loginAndSignUp" component={LoginAndSignUp} />

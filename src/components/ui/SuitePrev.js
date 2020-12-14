@@ -12,19 +12,17 @@ class SuitePrev extends React.Component {
    }
 
    goToNextCard() {
-      if (this.props.queue.index === this.props.queue.suites.length - 1) {
-         // on the last card
-         this.props.dispatch({ type: actions.INCREMENT_QUEUE_INDEX });
-         this.props.history.push("");
-      } else {
-         this.props.dispatch({ type: actions.INCREMENT_QUEUE_INDEX });
-         this.props.history.push("/suite");
-      }
+      this.props.dispatch({
+         type: actions.STORE_EDITABLE_SUITE,
+         payload: this.props.suite,
+      });
+      this.props.history.push("/suite");
    }
 
    render() {
       return (
          //<!--SuitePrev-->
+
          <div
             className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
             style={{ maxWidth: "900px", height: "auto" }}
@@ -57,8 +55,13 @@ class SuitePrev extends React.Component {
                         {this.props.suite.maxGuest} max guests
                      </p>
                      <p>
-                        {this.props.suite.totalKingBed} king bed ·{" "}
-                        {this.props.suite.totalQueenBed} queen beds
+                        {this.props.suite.totalKingBed} king bed
+                        {this.props.suite.totalQueenBed > 0 && (
+                           <span>
+                              {" "}
+                              · {this.props.suite.totalQueenBed} queen beds{" "}
+                           </span>
+                        )}
                      </p>
 
                      <p className="card-text"></p>
@@ -74,5 +77,4 @@ function mapStateToProps(state) {
       queue: state.queue,
    };
 }
-
 export default withRouter(connect(mapStateToProps)(SuitePrev));
