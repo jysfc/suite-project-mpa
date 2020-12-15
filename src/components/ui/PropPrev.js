@@ -9,12 +9,15 @@ class PropPrev extends React.Component {
    constructor(props) {
       super(props);
       console.log("In the Edit Property Component");
+      this.state = {
+         displayedProperties: [],
+      };
    }
 
    deleteProperty() {
       const deletedProperty = this.props.editableProperty;
-      const Properties = this.props.allProperties;
-      const filteredProperties = without(Properties, deletedProperty);
+      const properties = this.props.suite;
+      const filteredProperties = without(properties, deletedProperty);
       console.log(filteredProperties);
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
@@ -51,6 +54,7 @@ class PropPrev extends React.Component {
 function mapStateToProps(state) {
    return {
       currentUser: state.currentUser,
+      editableProperty: state.editableProperty,
    };
 }
 
