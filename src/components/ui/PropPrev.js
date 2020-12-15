@@ -32,7 +32,7 @@ class PropPrev extends React.Component {
                className="text-dark text-decoration-none"
                type="button"
             >
-               <h5>{this.props.property.createdAt}</h5>
+               <h5>{this.props.user.propertyName}</h5>
             </Link>
 
             <Link
@@ -50,8 +50,7 @@ class PropPrev extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      editableProperty: state.editableProperty,
-      allSuites: state.allSuites,
+      currentUser: state.currentUser,
    };
 }
 

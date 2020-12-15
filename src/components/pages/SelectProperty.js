@@ -16,7 +16,7 @@ class SelectProperty extends React.Component {
    componentDidMount() {
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users.json"
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users-flatten.json"
          )
          .then((res) => {
             // handle success
@@ -38,8 +38,8 @@ class SelectProperty extends React.Component {
          <AppTemplate>
             {/* <!-- Properties --> */}
 
-            {users.map((property) => {
-               return <PropPrev property={property} key={property.id} />;
+            {users.map((user) => {
+               return <PropPrev user={user} key={user.id} />;
             })}
 
             {/* <!-- Property new --> */}
@@ -59,8 +59,7 @@ class SelectProperty extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      editableProperty: state.editableProperty,
-      allSuites: state.allSuites,
+      currentUser: state.currentUser,
    };
 }
 export default connect(mapStateToProps)(SelectProperty);
