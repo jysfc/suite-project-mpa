@@ -10,14 +10,6 @@ import AccessibleIcon from "../../icons/accessible.svg";
 import { connect } from "react-redux";
 
 class Suite extends React.Component {
-   // constructor(props) {
-   //    super(props);
-   //    // if (this.props.allSuites.suites.length === 0) {
-   //    //    this.props.history.push("/suite");
-   //    // }
-   //    console.log(props)
-   // }
-
    render() {
       return (
          <AppTemplate>

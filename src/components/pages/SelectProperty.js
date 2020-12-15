@@ -5,33 +5,33 @@ import AddIcon from "../../icons/add.svg";
 import PropPrev from "../ui/PropPrev";
 import { connect } from "react-redux";
 import { users } from "../../data/users";
-// import axios from "axios";
-// import actions from "../../store/actions";
+import axios from "axios";
+import actions from "../../store/actions";
 
 class SelectProperty extends React.Component {
    constructor(props) {
       super(props);
       console.log("In the Edit Property Component");
    }
-   // componentDidMount() {
-   //    axios
-   //       .get(
-   //          "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users.json"
-   //       )
-   //       .then((res) => {
-   //          // handle success
-   //          const currentUser = res.data;
-   //          console.log(currentUser);
-   //          this.props.dispatch({
-   //             type: actions.UPDATE_CURRENT_USER,
-   //             payload: res.data,
-   //          });
-   //       })
-   //       .catch((error) => {
-   //          // handle error
-   //          console.log(error);
-   //       });
-   // }
+   componentDidMount() {
+      axios
+         .get(
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users.json"
+         )
+         .then((res) => {
+            // handle success
+            const currentUser = res.data;
+            console.log(currentUser);
+            this.props.dispatch({
+               type: actions.UPDATE_CURRENT_USER,
+               payload: res.data,
+            });
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
+   }
 
    render() {
       return (
@@ -40,12 +40,10 @@ class SelectProperty extends React.Component {
 
             {users.map((property) => {
                return (
-                  <PropPrev
-                     property={property.properties}
-                     key={property.properties.name}
-                  />
+                  <PropPrev property={property.properties} key={property.id} />
                );
             })}
+
             {/* <!-- Property new --> */}
             <div className="col mb-4">
                <Link
