@@ -31,7 +31,7 @@ class SuiteAvail extends React.Component {
    }
    deleteSuite() {
       const deletedSuite = this.props.editableSuite;
-      const Suites = this.props.allSuites;
+      const Suites = this.props.allSuites.suites;
       const filteredSuites = without(Suites, deletedSuite);
       console.log(filteredSuites);
       this.props.dispatch({
@@ -52,9 +52,9 @@ class SuiteAvail extends React.Component {
                <div className="row">
                   <div className="col-md-6 pr-1">
                      <img
-                        src={this.props.allSuites.image}
+                        src={this.props.editableSuite.image}
                         className="img-fluid"
-                        alt={this.props.allSuites.title}
+                        alt={this.props.editableSuite.title}
                      />{" "}
                   </div>
                   <div className="col-md-6 float-right">
@@ -64,7 +64,7 @@ class SuiteAvail extends React.Component {
                            className="text-dark lead text-decoration-none"
                            type="button"
                         >
-                           {this.props.allSuites.title}
+                           {this.props.editableSuite.title}
                         </Link>
 
                         <Link

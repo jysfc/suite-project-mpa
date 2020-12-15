@@ -39,9 +39,7 @@ class SelectProperty extends React.Component {
             {/* <!-- Properties --> */}
 
             {users.map((property) => {
-               return (
-                  <PropPrev property={property.properties} key={property.id} />
-               );
+               return <PropPrev property={property} key={property.id} />;
             })}
 
             {/* <!-- Property new --> */}

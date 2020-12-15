@@ -32,7 +32,7 @@ class PropPrev extends React.Component {
                className="text-dark text-decoration-none"
                type="button"
             >
-               <h5>{this.props.property.title}</h5>
+               <h5>{this.props.property.createdAt}</h5>
             </Link>
 
             <Link

@@ -6,7 +6,10 @@ const initialState = {
    currentUser: {},
    editableSuite: {},
    editableProperty: {},
-   allSuites: [],
+   allSuites: {
+      suites: [],
+      index: 0,
+   },
 };
 
 const store = createStore(combineReducers, initialState, composeWithDevTools());
