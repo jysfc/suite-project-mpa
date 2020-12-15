@@ -29,7 +29,6 @@ class PropInfo extends React.Component {
                   {props.propertyPhoneCountryCode}({props.propertyPhoneAreaCode}
                   ) {props.propertyPhoneNumber}
                </li>
-               <li>{props.propertyWebsite}</li>
 
                <li className="mt-4">
                   <img

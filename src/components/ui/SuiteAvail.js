@@ -23,7 +23,7 @@ class SuiteAvail extends React.Component {
       const filteredSuites = without(Suites, deletedSuite);
       console.log(filteredSuites);
       this.props.dispatch({
-         type: actions.STORE_EDITABLE_SUITE,
+         type: actions.UPDATE_EDITABLE_SUITE,
          payload: filteredSuites,
       });
       if (filteredSuites[this.props.allSuites.index] === undefined) {

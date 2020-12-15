@@ -12,7 +12,10 @@ class PropPrev extends React.Component {
    }
 
    deleteProperty() {
-      if (this.props.editableProperty.prevRoute === "/select-property") {
+      if (this.props.editableProperty.prevRoute === "/loginAndSignUp") {
+         this.deleteCardFromStore();
+      }
+      if (this.props.editableProperty.prevRoute === "/edit-property") {
          this.props.history.push("/select-property");
       }
    }
@@ -23,12 +26,10 @@ class PropPrev extends React.Component {
       const filteredProperties = without(Properties, deletedProperty);
       console.log(filteredProperties);
       this.props.dispatch({
-         type: actions.STORE_EDITABLE_PROPERTY,
+         type: actions.UPDATE_EDITABLE_PROPERTY,
          payload: filteredProperties,
       });
       if (filteredProperties[this.props.allSuites.index] === undefined) {
-         this.props.history.push("/select-property");
-      } else {
          this.props.history.push("/select-property");
       }
    }
@@ -42,7 +43,7 @@ class PropPrev extends React.Component {
                className="text-dark text-decoration-none"
                type="button"
             >
-               <h5>{this.props.user.properties[0].name}</h5>
+               <h5>{this.props.editableProperty.Property}</h5>
             </Link>
 
             <Link
