@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import actions from "../../store/actions";
 
 class SuitePrev extends React.Component {
-   constructor(props) {
-      super(props);
-      if (this.props.queue.suites.length === 0) {
-         this.props.history.push("");
-      }
-   }
+   // constructor(props) {
+   //    super(props);
+   //    // if (this.props.allSuites.suites.length === 0) {
+   //    //    this.props.history.push("");
+   //    // }
+   // }
 
    goToNextCard() {
       this.props.dispatch({
@@ -55,11 +55,30 @@ class SuitePrev extends React.Component {
                         {this.props.suite.maxGuest} max guests
                      </p>
                      <p>
-                        {this.props.suite.totalKingBed} king bed
+                        {this.props.suite.totalKingBed > 0 && (
+                           <span>
+                              {this.props.suite.totalKingBed} king bed
+                              {this.props.suite.totalKingBed > 1 && (
+                                 <span>s</span>
+                              )}
+                           </span>
+                        )}
                         {this.props.suite.totalQueenBed > 0 && (
                            <span>
                               {" "}
-                              · {this.props.suite.totalQueenBed} queen beds{" "}
+                              · {this.props.suite.totalQueenBed} queen bed
+                              {this.props.suite.totalQueenBed > 1 && (
+                                 <span>s</span>
+                              )}{" "}
+                           </span>
+                        )}
+                        {this.props.suite.totalFullBed > 0 && (
+                           <span>
+                              {" "}
+                              · {this.props.suite.totalFullBed} full bed
+                              {this.props.suite.totalFullBed > 1 && (
+                                 <span>s</span>
+                              )}{" "}
                            </span>
                         )}
                      </p>
@@ -74,7 +93,7 @@ class SuitePrev extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      queue: state.queue,
+      allSuites: state.allSuites,
    };
 }
 export default withRouter(connect(mapStateToProps)(SuitePrev));

@@ -1,11 +1,11 @@
 import actions from "../actions";
 
 export default function allSuites(allSuites = {}, action) {
-   let newSelection = { ...allSuites };
+   let newSuite = { ...allSuites };
    switch (action.type) {
-      case actions.STORE_ALL_SUITES:
-         newSelection = action.payload;
-         return newSelection;
+      case actions.PRESENT_ALL_SUITES:
+         newSuite = action.payload;
+         return newSuite;
 
       default:
          return allSuites;

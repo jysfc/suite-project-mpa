@@ -28,7 +28,7 @@ class Landing extends React.Component {
                allSuites: orderBy(suites, ["createdAt"], ["desc"]),
             });
             this.props.dispatch({
-               type: actions.STORE_QUEUED_SUITES,
+               type: actions.PRESENT_ALL_SUITES,
                payload: res.data,
             });
          })

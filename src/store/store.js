@@ -4,9 +4,8 @@ import combineReducers from "./combineReducers";
 
 const initialState = {
    currentUser: {},
-   allSuites: [],
    editableSuite: {},
-   queue: {
+   allSuites: {
       suites: [],
       index: 0,
    },

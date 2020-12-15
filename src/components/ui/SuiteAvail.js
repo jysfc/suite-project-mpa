@@ -19,14 +19,14 @@ class SuiteAvail extends React.Component {
 
    deleteSuiteFromStore() {
       const deletedSuite = this.props.editableSuite.Suite;
-      const Suites = this.props.queue.Suites;
+      const Suites = this.props.allSuites.Suites;
       const filteredSuites = without(Suites, deletedSuite);
       console.log(filteredSuites);
       this.props.dispatch({
-         type: actions.STORE_QUEUED_SUITES,
+         type: actions.STORE_EDITABLE_SUITE,
          payload: filteredSuites,
       });
-      if (filteredSuites[this.props.queue.index] === undefined) {
+      if (filteredSuites[this.props.allSuites.index] === undefined) {
          this.props.history.push("/edit-property");
       } else {
          this.props.history.push("/edit-property");
@@ -84,7 +84,7 @@ class SuiteAvail extends React.Component {
 function mapStateToProps(state) {
    return {
       editableSuite: state.editableSuite,
-      queue: state.queue,
+      allSuites: state.allSuites,
    };
 }
 

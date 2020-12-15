@@ -96,7 +96,7 @@ class PropInfo extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      queue: state.queue,
+      allSuites: state.allSuites,
    };
 }
 export default withRouter(connect(mapStateToProps)(PropInfo));

@@ -19,14 +19,14 @@ class PropPrev extends React.Component {
 
    deletePropertyFromStore() {
       const deletedProperty = this.props.editableProperty.Property;
-      const Properties = this.props.queue.Properties;
+      const Properties = this.props.allSuites.Properties;
       const filteredProperties = without(Properties, deletedProperty);
       console.log(filteredProperties);
       this.props.dispatch({
-         type: actions.STORE_QUEUED_PROPERTY,
+         type: actions.STORE_EDITABLE_PROPERTY,
          payload: filteredProperties,
       });
-      if (filteredProperties[this.props.queue.index] === undefined) {
+      if (filteredProperties[this.props.allSuites.index] === undefined) {
          this.props.history.push("/select-property");
       } else {
          this.props.history.push("/select-property");
@@ -62,7 +62,7 @@ class PropPrev extends React.Component {
 function mapStateToProps(state) {
    return {
       editableProperty: state.editableProperty,
-      queue: state.queue,
+      allSuites: state.allSuites,
    };
 }
 

@@ -10,12 +10,13 @@ import { connect } from "react-redux";
 // const suite = suites[0];
 
 class Suite extends React.Component {
-   constructor(props) {
-      super(props);
-      if (this.props.queue.suites.length === 0) {
-         this.props.history.push("/suite");
-      }
-   }
+   // constructor(props) {
+   //    super(props);
+   //    // if (this.props.allSuites.suites.length === 0) {
+   //    //    this.props.history.push("/suite");
+   //    // }
+   //    console.log(props)
+   // }
 
    render() {
       return (
@@ -55,8 +56,34 @@ class Suite extends React.Component {
                            {this.props.editableSuite.maxGuest} max guests
                         </li>
                         <li>
-                           {this.props.editableSuite.totalKingBed} king bed ·{" "}
-                           {this.props.editableSuite.totalQueenBed} queen beds
+                           {this.props.editableSuite.totalKingBed > 0 && (
+                              <span>
+                                 {this.props.editableSuite.totalKingBed} king
+                                 bed
+                                 {this.props.editableSuite.totalKingBed > 1 && (
+                                    <span>s</span>
+                                 )}
+                              </span>
+                           )}
+                           {this.props.editableSuite.totalQueenBed > 0 && (
+                              <span>
+                                 {" "}
+                                 · {this.props.editableSuite.totalQueenBed}{" "}
+                                 queen bed
+                                 {this.props.editableSuite.totalQueenBed >
+                                    1 && <span>s</span>}{" "}
+                              </span>
+                           )}
+                           {this.props.editableSuite.totalFullBed > 0 && (
+                              <span>
+                                 {" "}
+                                 · {this.props.editableSuite.totalFullBed} full
+                                 bed
+                                 {this.props.editableSuite.totalFullBed > 1 && (
+                                    <span>s</span>
+                                 )}{" "}
+                              </span>
+                           )}
                         </li>
 
                         {/* <!--SUITE AMENITIES--> */}
@@ -71,7 +98,7 @@ class Suite extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      queue: state.queue,
+      allSuites: state.allSuites,
       editableSuite: state.editableSuite,
    };
 }
