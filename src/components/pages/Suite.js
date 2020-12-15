@@ -2,12 +2,12 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import { Link, withRouter } from "react-router-dom";
 import BookNowIcon from "../../icons/book-now.svg";
-
 import PropInfo from "../ui/PropInfo";
-import SuiteAmenities from "../ui/SuiteAmenities";
+import TvIcon from "../../icons/tv.svg";
+import SafeIcon from "../../icons/safe.svg";
+import WifiIcon from "../../icons/wifi.svg";
+import AccessibleIcon from "../../icons/accessible.svg";
 import { connect } from "react-redux";
-
-// const suite = suites[0];
 
 class Suite extends React.Component {
    // constructor(props) {
@@ -87,7 +87,58 @@ class Suite extends React.Component {
                         </li>
 
                         {/* <!--SUITE AMENITIES--> */}
-                        <SuiteAmenities />
+
+                        <li className="lead mt-4">Suite Amenities:</li>
+                        <li>
+                           <ul className="list-unstyled">
+                              {this.props.editableSuite.hasWiFi && (
+                                 <li>
+                                    <img
+                                       src={WifiIcon}
+                                       width="16px"
+                                       className="mr-1"
+                                       alt=""
+                                    />
+                                    WiFi
+                                 </li>
+                              )}
+
+                              {this.props.editableSuite.hasTv && (
+                                 <li>
+                                    <img
+                                       src={TvIcon}
+                                       width="16px"
+                                       className="mr-1"
+                                       alt=""
+                                    />
+                                    TV
+                                 </li>
+                              )}
+                              {this.props.editableSuite.hasSafe && (
+                                 <li>
+                                    <img
+                                       src={SafeIcon}
+                                       width="16px"
+                                       className="mr-1"
+                                       alt=""
+                                    />
+                                    In-Room Safe
+                                 </li>
+                              )}
+
+                              {this.props.editableSuite.isAccessible && (
+                                 <li>
+                                    <img
+                                       src={AccessibleIcon}
+                                       width="16px"
+                                       className="mr-1"
+                                       alt=""
+                                    />
+                                    Accessible
+                                 </li>
+                              )}
+                           </ul>
+                        </li>
                      </ul>
                   </form>
                </div>
