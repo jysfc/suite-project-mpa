@@ -38,8 +38,13 @@ class SelectProperty extends React.Component {
          <AppTemplate>
             {/* <!-- Properties --> */}
 
-            {users.map((user) => {
-               return <PropPrev user={user} key={user.id} />;
+            {users.map((property) => {
+               return (
+                  <PropPrev
+                     property={property.properties}
+                     key={property.properties.name}
+                  />
+               );
             })}
             {/* <!-- Property new --> */}
             <div className="col mb-4">
