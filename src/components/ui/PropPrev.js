@@ -12,26 +12,15 @@ class PropPrev extends React.Component {
    }
 
    deleteProperty() {
-      if (this.props.editableProperty.prevRoute === "/loginAndSignUp") {
-         this.deleteCardFromStore();
-      }
-      if (this.props.editableProperty.prevRoute === "/edit-property") {
-         this.props.history.push("/select-property");
-      }
-   }
-
-   deletePropertyFromStore() {
-      const deletedProperty = this.props.editableProperty.Property;
-      const Properties = this.props.allSuites.Properties;
+      const deletedProperty = this.props.editableProperty;
+      const Properties = this.props.allProperties;
       const filteredProperties = without(Properties, deletedProperty);
       console.log(filteredProperties);
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
          payload: filteredProperties,
       });
-      if (filteredProperties[this.props.allSuites.index] === undefined) {
-         this.props.history.push("/select-property");
-      }
+      this.setState({ displayedProperties: filteredProperties });
    }
 
    render() {
@@ -43,11 +32,10 @@ class PropPrev extends React.Component {
                className="text-dark text-decoration-none"
                type="button"
             >
-               <h5>{this.props.editableProperty.Property}</h5>
+               <h5>{this.props.allSuites.name}</h5>
             </Link>
 
             <Link
-               to=""
                className="text-danger text-decoration-none float-right"
                onClick={() => {
                   this.deleteProperty();

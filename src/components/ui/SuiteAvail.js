@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import RemoveIcon from "../../icons/remove.svg";
 import { connect } from "react-redux";
 import without from "lodash/without";
 import actions from "../../store/actions";
+import axios from "axios";
 
 class SuiteAvail extends React.Component {
    constructor(props) {
@@ -11,26 +12,33 @@ class SuiteAvail extends React.Component {
       console.log("In the Edit Suite Component");
    }
 
-   deleteSuite() {
-      if (this.props.editableSuite.prevRoute === "/edit-property") {
-         this.props.history.push("/edit-property");
-      }
+   componentDidMount() {
+      axios
+         .get(
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/suites.json"
+         )
+         .then((res) => {
+            // handle success
+            this.props.dispatch({
+               type: actions.UPDATE_EDITABLE_SUITE,
+               payload: res.data,
+            });
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
    }
-
-   deleteSuiteFromStore() {
-      const deletedSuite = this.props.editableSuite.Suite;
-      const Suites = this.props.allSuites.Suites;
+   deleteSuite() {
+      const deletedSuite = this.props.editableSuite;
+      const Suites = this.props.allSuites;
       const filteredSuites = without(Suites, deletedSuite);
       console.log(filteredSuites);
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_SUITE,
          payload: filteredSuites,
       });
-      if (filteredSuites[this.props.allSuites.index] === undefined) {
-         this.props.history.push("/edit-property");
-      } else {
-         this.props.history.push("/edit-property");
-      }
+      this.setState({ displayedSuites: filteredSuites });
    }
 
    render() {
@@ -44,9 +52,9 @@ class SuiteAvail extends React.Component {
                <div className="row">
                   <div className="col-md-6 pr-1">
                      <img
-                        src={this.props.user.properties[0].image}
+                        src={this.props.allSuites.image}
                         className="img-fluid"
-                        alt={this.props.user.properties[0].title}
+                        alt={this.props.allSuites.title}
                      />{" "}
                   </div>
                   <div className="col-md-6 float-right">
@@ -56,10 +64,10 @@ class SuiteAvail extends React.Component {
                            className="text-dark lead text-decoration-none"
                            type="button"
                         >
-                           {this.props.user.properties[0].title}
+                           {this.props.allSuites.title}
                         </Link>
+
                         <Link
-                           to=""
                            className="text-danger text-decoration-none float-right"
                            onClick={() => {
                               this.deleteSuite();
@@ -88,4 +96,4 @@ function mapStateToProps(state) {
    };
 }
 
-export default connect(mapStateToProps)(SuiteAvail);
+export default withRouter(connect(mapStateToProps)(SuiteAvail));
