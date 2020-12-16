@@ -7,8 +7,6 @@ const userSchema = [
       isActive: boolean,
       properties: [
          {
-            suiteId: string,
-            title: string,
             name: string,
             id: string,
             website: string,
@@ -21,13 +19,20 @@ const userSchema = [
             phoneCountryCode: string,
             phoneAreaCode: string,
             phoneNumber: string,
-            image: string,
+
             selfParking: string,
             valetParking: string,
             hasOutdoorPool: boolean,
             hasSpa: boolean,
             isSmokeFree: boolean,
-            isActive: boolean,
+            suite: [
+               {
+                  suiteId: string,
+                  title: string,
+                  image: string,
+                  isActive: boolean,
+               },
+            ],
          },
       ],
    },
