@@ -22,18 +22,14 @@ class SelectProperty extends React.Component {
    componentDidMount() {
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users.json"
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users2.json"
          )
          .then((res) => {
             // handle success
             const currentUser = res.data;
             console.log(currentUser);
             this.setState({
-               displayedProperties: orderBy(
-                  currentUser,
-                  ["createdAt"],
-                  ["desc"]
-               ),
+               displayedProperties: currentUser.properties,
             });
          })
          .catch((error) => {
