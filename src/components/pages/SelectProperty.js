@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import axios from "axios";
 import orderBy from "lodash/orderBy";
 import actions from "../../store/actions";
-import { filter } from "lodash";
 
 class SelectProperty extends React.Component {
    constructor(props) {
@@ -28,6 +27,7 @@ class SelectProperty extends React.Component {
          .then((res) => {
             // handle success
             const currentUser = res.data;
+            console.log(currentUser);
             this.setState({
                displayedProperties: orderBy(
                   currentUser,
@@ -44,7 +44,9 @@ class SelectProperty extends React.Component {
    deleteProperty(property) {
       const deletedProperty = property;
       const properties = this.state.displayedProperties;
-      const filteredProperties = filter(properties, deletedProperty);
+      const filteredProperties = properties.filter((property) => {
+         return property.id !== deletedProperty.id;
+      });
       console.log(filteredProperties);
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
@@ -62,7 +64,7 @@ class SelectProperty extends React.Component {
                return (
                   <PropPrev
                      property={property}
-                     key={property.propertySuiteId}
+                     key={property.id}
                      deleteProperty={this.deleteProperty}
                   />
                );
