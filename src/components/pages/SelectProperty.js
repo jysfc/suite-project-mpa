@@ -5,9 +5,9 @@ import AddIcon from "../../icons/add.svg";
 import PropPrev from "../ui/PropPrev";
 import { connect } from "react-redux";
 import axios from "axios";
-import actions from "../../store/actions";
 import orderBy from "lodash/orderBy";
-import { property } from "lodash";
+import actions from "../../store/actions";
+import { filter } from "lodash";
 
 class SelectProperty extends React.Component {
    constructor(props) {
@@ -18,6 +18,7 @@ class SelectProperty extends React.Component {
          displayedProperties: [],
          currentUser: [],
       };
+      this.deleteProperty = this.deleteProperty.bind(this);
    }
    componentDidMount() {
       axios
@@ -33,11 +34,6 @@ class SelectProperty extends React.Component {
                   ["createdAt"],
                   ["desc"]
                ),
-               currentUser: orderBy(currentUser, ["createdAt"], ["desc"]),
-            });
-            this.props.dispatch({
-               type: actions.UPDATE_CURRENT_USER,
-               payload: res.data,
             });
          })
          .catch((error) => {
@@ -45,20 +41,32 @@ class SelectProperty extends React.Component {
             console.log(error);
          });
    }
+   deleteProperty(property) {
+      const deletedProperty = property;
+      const properties = this.state.displayedProperties;
+      const filteredProperties = filter(properties, deletedProperty);
+      console.log(filteredProperties);
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: filteredProperties,
+      });
+      this.setState({ displayedProperties: filteredProperties });
+   }
 
    render() {
       return (
          <AppTemplate>
             {/* <!-- Properties --> */}
             {this.state.displayedProperties.map((property) => {
-               if (property.id === "9bfbc757-fcc9-40c8-9f83-652fdefee41e") {
-                  return (
-                     <PropPrev
-                        property={property}
-                        key={property.propertySuiteId}
-                     />
-                  );
-               }
+               // if (property.id === "9bfbc757-fcc9-40c8-9f83-652fdefee41e") {
+               return (
+                  <PropPrev
+                     property={property}
+                     key={property.propertySuiteId}
+                     deleteProperty={this.deleteProperty}
+                  />
+               );
+               // }
             })}
 
             {/* <!-- Property new --> */}
