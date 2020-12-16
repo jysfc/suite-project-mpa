@@ -17,18 +17,18 @@ function PropPrev(props) {
             className="text-dark text-decoration-none"
             type="button"
          >
-            <h5>{props.property.propertyName}</h5>
+            <h5>{props.property.name}</h5>
          </Link>
 
-         <Link
-            className="text-danger text-decoration-none float-right"
+         <button
+            className="text-danger text-decoration-none float-right btn btn-link"
             onClick={() => {
                props.deleteProperty(props.property);
             }}
          >
             <img src={RemoveIcon} width="20px" id="hotel-add" alt="" />
             Remove
-         </Link>
+         </button>
       </div>
    );
 }

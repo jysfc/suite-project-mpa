@@ -14,14 +14,13 @@ class SelectProperty extends React.Component {
       // console.log("user", this.props.currentUser[0].propertyName);
       this.state = {
          displayedProperties: [],
-         currentUser: [],
       };
       this.deleteProperty = this.deleteProperty.bind(this);
    }
    componentDidMount() {
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user2.json"
          )
          .then((res) => {
             // handle success
@@ -55,7 +54,6 @@ class SelectProperty extends React.Component {
          <AppTemplate>
             {/* <!-- Properties --> */}
             {this.state.displayedProperties.map((property) => {
-               // if (property.id === "9bfbc757-fcc9-40c8-9f83-652fdefee41e") {
                return (
                   <PropPrev
                      property={property}
@@ -63,7 +61,6 @@ class SelectProperty extends React.Component {
                      deleteProperty={this.deleteProperty}
                   />
                );
-               // }
             })}
 
             {/* <!-- Property new --> */}
@@ -83,7 +80,6 @@ class SelectProperty extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      currentUser: state.currentUser,
       editableProperty: state.editableProperty,
    };
 }
