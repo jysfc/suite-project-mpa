@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import AddIcon from "../../icons/add.svg";
 import PropPrev from "../ui/PropPrev";
 import { connect } from "react-redux";
-import { users } from "../../data/users";
 import axios from "axios";
 import actions from "../../store/actions";
+import orderBy from "lodash/orderBy";
 
 class SelectProperty extends React.Component {
    constructor(props) {
       super(props);
-      console.log("In the Edit Property Component");
+      // const currentUser = this.props.currentUser[0];
+      // console.log("user", this.props.currentUser[0].propertyName);
+      this.state = {
+         displayedProperties: [],
+         currentUser: [],
+      };
    }
    componentDidMount() {
       axios
@@ -21,7 +26,14 @@ class SelectProperty extends React.Component {
          .then((res) => {
             // handle success
             const currentUser = res.data;
-            console.log(currentUser);
+            this.setState({
+               displayedProperties: orderBy(
+                  currentUser,
+                  ["createdAt"],
+                  ["desc"]
+               ),
+               currentUser: orderBy(currentUser, ["createdAt"], ["desc"]),
+            });
             this.props.dispatch({
                type: actions.UPDATE_CURRENT_USER,
                payload: res.data,
@@ -37,9 +49,15 @@ class SelectProperty extends React.Component {
       return (
          <AppTemplate>
             {/* <!-- Properties --> */}
-
-            {users.map((user) => {
-               return <PropPrev user={user} key={user.id} />;
+            {this.state.displayedProperties.map((property) => {
+               if (property.id === "9bfbc757-fcc9-40c8-9f83-652fdefee41e") {
+                  return (
+                     <PropPrev
+                        property={property}
+                        key={property.propertySuiteId}
+                     />
+                  );
+               }
             })}
 
             {/* <!-- Property new --> */}
@@ -60,6 +78,7 @@ class SelectProperty extends React.Component {
 function mapStateToProps(state) {
    return {
       currentUser: state.currentUser,
+      editableProperty: state.editableProperty,
    };
 }
 export default connect(mapStateToProps)(SelectProperty);

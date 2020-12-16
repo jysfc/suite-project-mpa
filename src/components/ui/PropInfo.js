@@ -8,11 +8,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 class PropInfo extends React.Component {
-   // constructor(props) {
-   //    super(props);
-   //    console.log(props);
-   // }
-
    render() {
       const props = this.props.suite;
       return (

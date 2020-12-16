@@ -4,13 +4,6 @@ import { connect } from "react-redux";
 import actions from "../../store/actions";
 
 class SuitePrev extends React.Component {
-   // constructor(props) {
-   //    super(props);
-   //    // if (this.props.allSuites.suites.length === 0) {
-   //    //    this.props.history.push("");
-   //    // }
-   // }
-
    goToNextCard() {
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_SUITE,

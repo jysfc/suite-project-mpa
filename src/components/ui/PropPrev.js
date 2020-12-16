@@ -9,14 +9,11 @@ class PropPrev extends React.Component {
    constructor(props) {
       super(props);
       console.log("In the Edit Property Component");
-      this.state = {
-         displayedProperties: [],
-      };
    }
 
    deleteProperty() {
-      const deletedProperty = this.props.editableProperty;
-      const properties = this.props.suite;
+      const deletedProperty = this.props.editableProperty.property;
+      const properties = this.props.currentUser.user;
       const filteredProperties = without(properties, deletedProperty);
       console.log(filteredProperties);
       this.props.dispatch({
@@ -35,7 +32,7 @@ class PropPrev extends React.Component {
                className="text-dark text-decoration-none"
                type="button"
             >
-               <h5>{this.props.user.propertyName}</h5>
+               <h5>{this.props.property.propertyName}</h5>
             </Link>
 
             <Link
