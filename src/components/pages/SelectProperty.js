@@ -5,7 +5,6 @@ import AddIcon from "../../icons/add.svg";
 import PropPrev from "../ui/PropPrev";
 import { connect } from "react-redux";
 import axios from "axios";
-import orderBy from "lodash/orderBy";
 import actions from "../../store/actions";
 
 class SelectProperty extends React.Component {
@@ -22,7 +21,7 @@ class SelectProperty extends React.Component {
    componentDidMount() {
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users2.json"
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
          )
          .then((res) => {
             // handle success
