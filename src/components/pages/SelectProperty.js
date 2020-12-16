@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import actions from "../../store/actions";
 import orderBy from "lodash/orderBy";
+import { property } from "lodash";
 
 class SelectProperty extends React.Component {
    constructor(props) {

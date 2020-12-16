@@ -12,7 +12,8 @@ class PropPrev extends React.Component {
    }
 
    deleteProperty() {
-      const deletedProperty = this.props.editableProperty.property;
+      const deletedProperty = this.props.editableProperty;
+      console.log(deletedProperty);
       const properties = this.props.currentUser.user;
       const filteredProperties = without(properties, deletedProperty);
       console.log(filteredProperties);
