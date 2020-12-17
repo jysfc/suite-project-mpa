@@ -1,7 +1,7 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import SuiteAddIcon from "../../icons/suite-add.svg";
-import RemoveIcon from "../../icons/remove.svg";
+import SuiteAvail from "../ui/SuiteAvail";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
@@ -14,6 +14,8 @@ class EditProperty extends React.Component {
          image: "",
          title: "",
       };
+      this.deleteSuite = this.deleteSuite.bind(this);
+      this.editSuite = this.editSuite.bind(this);
    }
    deleteSuite(suite) {
       const deletedSuite = suite;
@@ -28,10 +30,13 @@ class EditProperty extends React.Component {
       });
       this.setState({ displayedSuites: filteredSuites });
    }
-   editSuite() {
+   editSuite(id) {
+      const suite = this.props.property.suites.find((suite) => {
+         return suite.id === id;
+      });
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_SUITE,
-         payload: this.props.property,
+         payload: suite,
       });
       this.props.history.push("/edit-suite");
    }
@@ -50,51 +55,12 @@ class EditProperty extends React.Component {
                         {/*<!--RESULT-->*/}
                         {this.props.property.suites.map((suite) => {
                            return (
-                              <div
-                                 className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
-                                 style={{ maxWidth: "auto", height: "auto" }}
+                              <SuiteAvail
                                  suite={suite}
                                  key={suite.id}
-                              >
-                                 <div className="row">
-                                    <div className="col-md-6 pr-1">
-                                       <img
-                                          src={suite.image}
-                                          className="img-fluid"
-                                          name="image"
-                                          alt={suite.title}
-                                       />{" "}
-                                    </div>
-                                    <div className="col-md-6 float-right">
-                                       <div className="text-muted">
-                                          <button
-                                             className="text-dark lead text-decoration-none btn btn-link"
-                                             type="button"
-                                             onClick={() => {
-                                                this.editSuite();
-                                             }}
-                                          >
-                                             {suite.title}
-                                          </button>
-
-                                          <button
-                                             className="text-danger text-decoration-none float-right btn btn-link"
-                                             onClick={() => {
-                                                this.deleteSuite();
-                                             }}
-                                          >
-                                             <img
-                                                src={RemoveIcon}
-                                                width="20px"
-                                                id="property-remove"
-                                                alt=""
-                                             />
-                                             Remove
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+                                 deleteSuite={this.deleteSuite}
+                                 editSuite={this.editSuite}
+                              />
                            );
                         })}
 
