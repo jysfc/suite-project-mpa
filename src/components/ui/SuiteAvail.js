@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import RemoveIcon from "../../icons/remove.svg";
 import { connect } from "react-redux";
-import actions from "../../store/actions";
 
 class SuiteAvail extends React.Component {
    render() {
