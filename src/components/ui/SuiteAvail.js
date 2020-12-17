@@ -2,45 +2,16 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import RemoveIcon from "../../icons/remove.svg";
 import { connect } from "react-redux";
-import without from "lodash/without";
 import actions from "../../store/actions";
-import axios from "axios";
 
 class SuiteAvail extends React.Component {
-   constructor(props) {
-      super(props);
-      console.log("In the Edit Suite Component");
-   }
-
-   componentDidMount() {
-      axios
-         .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/suites.json"
-         )
-         .then((res) => {
-            // handle success
-            this.props.dispatch({
-               type: actions.UPDATE_EDITABLE_SUITE,
-               payload: res.data,
-            });
-         })
-         .catch((error) => {
-            // handle error
-            console.log(error);
-         });
-   }
-   deleteSuite() {
-      const deletedSuite = this.props.editableSuite;
-      const Suites = this.props.allSuites.suites;
-      const filteredSuites = without(Suites, deletedSuite);
-      console.log(filteredSuites);
+   editSuite() {
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_SUITE,
-         payload: filteredSuites,
+         payload: this.props.property.suite,
       });
-      this.setState({ displayedSuites: filteredSuites });
+      this.props.history.push("/edit-suite");
    }
-
    render() {
       return (
          <>
@@ -52,9 +23,9 @@ class SuiteAvail extends React.Component {
                <div className="row">
                   <div className="col-md-6 pr-1">
                      <img
-                        src={this.props.editableSuite.image}
+                        src={this.props.suite.image}
                         className="img-fluid"
-                        alt={this.props.editableSuite.title}
+                        alt={this.props.suite.title}
                      />{" "}
                   </div>
                   <div className="col-md-6 float-right">
@@ -63,14 +34,17 @@ class SuiteAvail extends React.Component {
                            to="/edit-suite"
                            className="text-dark lead text-decoration-none"
                            type="button"
+                           onClick={() => {
+                              this.editSuite();
+                           }}
                         >
-                           {this.props.editableSuite.title}
+                           {this.props.suite.title}
                         </Link>
 
-                        <Link
-                           className="text-danger text-decoration-none float-right"
+                        <button
+                           className="text-danger text-decoration-none float-right btn btn-link"
                            onClick={() => {
-                              this.deleteSuite();
+                              this.props.deleteSuite(this.props.suite);
                            }}
                         >
                            <img
@@ -80,7 +54,7 @@ class SuiteAvail extends React.Component {
                               alt=""
                            />
                            Remove
-                        </Link>
+                        </button>
                      </div>
                   </div>
                </div>

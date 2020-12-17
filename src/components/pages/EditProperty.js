@@ -3,14 +3,31 @@ import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import SuiteAddIcon from "../../icons/suite-add.svg";
 import SuiteAvail from "../ui/SuiteAvail";
-import { users } from "../../data/users";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
+import actions from "../../store/actions";
 
 class EditProperty extends React.Component {
    constructor(props) {
       super(props);
-      console.log("In the Edit Suite Component");
+      this.state = {
+         displayedSuites: [],
+      };
+      this.deleteSuite = this.deleteSuite.bind(this);
+   }
+
+   deleteSuite(suite) {
+      const deletedSuite = suite;
+      const suites = this.state.displayedSuites;
+      const filteredSuites = suites.filter((suite) => {
+         return suite.id !== deletedSuite.id;
+      });
+      console.log(filteredSuites);
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_SUITE,
+         payload: filteredSuites,
+      });
+      this.setState({ displayedSuites: filteredSuites });
    }
 
    render() {
@@ -26,11 +43,12 @@ class EditProperty extends React.Component {
                      {/* <!--COLUMN RIGHT PROP RESULT--> */}
                      <div className="col-sm-6">
                         {/* <!--RESULTS--> */}
-                        {users.map((user) => {
+                        {this.state.displayedSuites.map((suite) => {
                            return (
                               <SuiteAvail
-                                 user={this.props.editableProperty}
-                                 key={this.props.editableProperty.id}
+                                 suite={suite}
+                                 key={suite.id}
+                                 deleteSuite={this.deleteSuite}
                               />
                            );
                         })}
@@ -62,7 +80,7 @@ class EditProperty extends React.Component {
 function mapStateToProps(state) {
    return {
       editableProperty: state.editableProperty,
-      allSuites: state.allSuites,
+      editableSuite: state.editableSuite,
    };
 }
 
