@@ -1,6 +1,5 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
-import { Link } from "react-router-dom";
 import SuiteAddIcon from "../../icons/suite-add.svg";
 import RemoveIcon from "../../icons/remove.svg";
 import PropInput from "../ui/PropInput";
@@ -11,6 +10,7 @@ class EditProperty extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
+         displayedSuites: [],
          image: "",
          title: "",
       };
@@ -23,7 +23,7 @@ class EditProperty extends React.Component {
       });
       console.log(filteredSuites);
       this.props.dispatch({
-         type: actions.UPDATE_EDITABLE_PROPERTY,
+         type: actions.UPDATE_EDITABLE_SUITE,
          payload: filteredSuites,
       });
       this.setState({ displayedSuites: filteredSuites });
@@ -48,56 +48,60 @@ class EditProperty extends React.Component {
                      {/* <!--COLUMN RIGHT PROP RESULT--> */}
                      <div className="col-sm-6">
                         {/*<!--RESULT-->*/}
-                        <div
-                           className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
-                           style={{ maxWidth: "auto", height: "auto" }}
-                        >
-                           <div className="row">
-                              <div className="col-md-6 pr-1">
-                                 <img
-                                    src={this.props.property.suites.image}
-                                    className="img-fluid"
-                                    name="image"
-                                    alt={this.props.property.suites.title}
-                                 />{" "}
-                              </div>
-                              <div className="col-md-6 float-right">
-                                 <div className="text-muted">
-                                    <Link
-                                       to="/edit-suite"
-                                       className="text-dark lead text-decoration-none"
-                                       type="button"
-                                       onClick={() => {
-                                          this.editSuite();
-                                       }}
-                                    >
-                                       {this.props.property.suites.title}
-                                    </Link>
-
-                                    <button
-                                       className="text-danger text-decoration-none float-right btn btn-link"
-                                       onClick={() => {
-                                          this.deleteSuite();
-                                       }}
-                                    >
+                        {this.props.property.suites.map((suite) => {
+                           return (
+                              <div
+                                 className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
+                                 style={{ maxWidth: "auto", height: "auto" }}
+                                 suite={suite}
+                                 key={suite.id}
+                              >
+                                 <div className="row">
+                                    <div className="col-md-6 pr-1">
                                        <img
-                                          src={RemoveIcon}
-                                          width="20px"
-                                          id="property-remove"
-                                          alt=""
-                                       />
-                                       Remove
-                                    </button>
+                                          src={suite.image}
+                                          className="img-fluid"
+                                          name="image"
+                                          alt={suite.title}
+                                       />{" "}
+                                    </div>
+                                    <div className="col-md-6 float-right">
+                                       <div className="text-muted">
+                                          <button
+                                             className="text-dark lead text-decoration-none btn btn-link"
+                                             type="button"
+                                             onClick={() => {
+                                                this.editSuite();
+                                             }}
+                                          >
+                                             {suite.title}
+                                          </button>
+
+                                          <button
+                                             className="text-danger text-decoration-none float-right btn btn-link"
+                                             onClick={() => {
+                                                this.deleteSuite();
+                                             }}
+                                          >
+                                             <img
+                                                src={RemoveIcon}
+                                                width="20px"
+                                                id="property-remove"
+                                                alt=""
+                                             />
+                                             Remove
+                                          </button>
+                                       </div>
+                                    </div>
                                  </div>
                               </div>
-                           </div>
-                        </div>
+                           );
+                        })}
 
                         {/* <!--NEW PROP--> */}
                         <div className="col">
                            <button
                               className="text-decoration-none btn btn-link"
-                              type="add-suite"
                               onClick={() => {
                                  this.editSuite();
                               }}
