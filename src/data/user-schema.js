@@ -19,17 +19,25 @@ const userSchema = [
             phoneCountryCode: string,
             phoneAreaCode: string,
             phoneNumber: string,
-
             selfParking: string,
             valetParking: string,
             hasOutdoorPool: boolean,
             hasSpa: boolean,
             isSmokeFree: boolean,
-            suite: [
+            suites: [
                {
-                  suiteId: string,
+                  id: string,
                   title: string,
                   image: string,
+                  squareFt: number,
+                  maxGuest: number,
+                  totalKingBed: number,
+                  totalQueenBed: number,
+                  totalFullBed: number,
+                  hasWiFi: boolean,
+                  hasTv: boolean,
+                  hasSafe: boolean,
+                  isAccessible: boolean,
                   isActive: boolean,
                },
             ],
