@@ -6,7 +6,7 @@ import actions from "../../store/actions";
 class SuitePrev extends React.Component {
    goToNextCard() {
       this.props.dispatch({
-         type: actions.UPDATE_EDITABLE_SUITE,
+         type: actions.PRESENT_SELECTED_SUITE,
          payload: this.props.suite,
       });
       this.props.history.push("/suite");

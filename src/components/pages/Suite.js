@@ -16,8 +16,8 @@ class Suite extends React.Component {
             <div className="row">
                {/* <!--COLUMN LEFT PROP INFO--> */}
                <PropInfo
-                  suite={this.props.editableSuite}
-                  key={this.props.editableSuite.propertyId}
+                  suite={this.props.selectedSuite}
+                  key={this.props.selectedSuite.propertyId}
                />
                {/* <!--COLUMN RIGHT EDIT Suite--> */}
                {/* <!--BOOK BTN--> */}
@@ -25,7 +25,7 @@ class Suite extends React.Component {
                   <form className="md-form">
                      <Link
                         to={{
-                           pathname: this.props.editableSuite.propertyWebsite,
+                           pathname: this.props.selectedSuite.propertyWebsite,
                         }}
                         target="_blank"
                         className="btn btn-primary btn-block mb-4"
@@ -36,42 +36,42 @@ class Suite extends React.Component {
                      </Link>
                      {/* <!--IMAGE--> */}
                      <img
-                        src={this.props.editableSuite.image}
+                        src={this.props.selectedSuite.image}
                         className="img-fluid mb-4"
-                        alt={this.props.editableSuite.title}
+                        alt={this.props.selectedSuite.title}
                      />
                      {/* <!--Suite INFO--> */}
                      <ul className="list-unstyled">
-                        <p className="lead">{this.props.editableSuite.title}</p>
+                        <p className="lead">{this.props.selectedSuite.title}</p>
                         <li>
-                           {this.props.editableSuite.squareFt} sq. ft ·{" "}
-                           {this.props.editableSuite.maxGuest} max guests
+                           {this.props.selectedSuite.squareFt} sq. ft ·{" "}
+                           {this.props.selectedSuite.maxGuest} max guests
                         </li>
                         <li>
-                           {this.props.editableSuite.totalKingBed > 0 && (
+                           {this.props.selectedSuite.totalKingBed > 0 && (
                               <span>
-                                 {this.props.editableSuite.totalKingBed} king
+                                 {this.props.selectedSuite.totalKingBed} king
                                  bed
-                                 {this.props.editableSuite.totalKingBed > 1 && (
+                                 {this.props.selectedSuite.totalKingBed > 1 && (
                                     <span>s</span>
                                  )}
                               </span>
                            )}
-                           {this.props.editableSuite.totalQueenBed > 0 && (
+                           {this.props.selectedSuite.totalQueenBed > 0 && (
                               <span>
                                  {" "}
-                                 · {this.props.editableSuite.totalQueenBed}{" "}
+                                 · {this.props.selectedSuite.totalQueenBed}{" "}
                                  queen bed
-                                 {this.props.editableSuite.totalQueenBed >
+                                 {this.props.selectedSuite.totalQueenBed >
                                     1 && <span>s</span>}{" "}
                               </span>
                            )}
-                           {this.props.editableSuite.totalFullBed > 0 && (
+                           {this.props.selectedSuite.totalFullBed > 0 && (
                               <span>
                                  {" "}
-                                 · {this.props.editableSuite.totalFullBed} full
+                                 · {this.props.selectedSuite.totalFullBed} full
                                  bed
-                                 {this.props.editableSuite.totalFullBed > 1 && (
+                                 {this.props.selectedSuite.totalFullBed > 1 && (
                                     <span>s</span>
                                  )}{" "}
                               </span>
@@ -83,7 +83,7 @@ class Suite extends React.Component {
                         <li className="lead mt-4">Suite Amenities:</li>
                         <li>
                            <ul className="list-unstyled">
-                              {this.props.editableSuite.hasWiFi && (
+                              {this.props.selectedSuite.hasWiFi && (
                                  <li>
                                     <img
                                        src={WifiIcon}
@@ -95,7 +95,7 @@ class Suite extends React.Component {
                                  </li>
                               )}
 
-                              {this.props.editableSuite.hasTv && (
+                              {this.props.selectedSuite.hasTv && (
                                  <li>
                                     <img
                                        src={TvIcon}
@@ -106,7 +106,7 @@ class Suite extends React.Component {
                                     TV
                                  </li>
                               )}
-                              {this.props.editableSuite.hasSafe && (
+                              {this.props.selectedSuite.hasSafe && (
                                  <li>
                                     <img
                                        src={SafeIcon}
@@ -118,7 +118,7 @@ class Suite extends React.Component {
                                  </li>
                               )}
 
-                              {this.props.editableSuite.isAccessible && (
+                              {this.props.selectedSuite.isAccessible && (
                                  <li>
                                     <img
                                        src={AccessibleIcon}
@@ -142,7 +142,7 @@ class Suite extends React.Component {
 function mapStateToProps(state) {
    return {
       allSuites: state.allSuites,
-      editableSuite: state.editableSuite,
+      selectedSuite: state.selectedSuite,
    };
 }
 export default withRouter(connect(mapStateToProps)(Suite));
