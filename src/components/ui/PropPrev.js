@@ -4,11 +4,6 @@ import RemoveIcon from "../../icons/remove.svg";
 import { connect } from "react-redux";
 
 function PropPrev(props) {
-   // constructor(props) {
-   //    super(props);
-   //    console.log("In the Edit Property Component");
-   // }
-
    return (
       //<!-- Property -->
       <div className="col my-6 mr-2 shadow p-3 bg-white rounded">

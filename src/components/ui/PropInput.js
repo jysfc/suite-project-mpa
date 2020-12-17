@@ -166,9 +166,7 @@ class PropInput extends React.Component {
                      onChange={(e) => this.updatePropInput(e)}
                   >
                      <option value="CA">California</option>
-                     <option value="NV" selected>
-                        Nevada
-                     </option>
+                     <option value="NV">Nevada</option>
                   </select>
                </div>
                <div className="form-group col-md-4">
@@ -193,10 +191,7 @@ class PropInput extends React.Component {
                      name="inputCountry"
                      onChange={(e) => this.updatePropInput(e)}
                   >
-                     <option value="SG">Singapore</option>
-                     <option value="US" selected>
-                        United States
-                     </option>
+                     <option value="US">US</option>
                   </select>
                </div>
             </div>
