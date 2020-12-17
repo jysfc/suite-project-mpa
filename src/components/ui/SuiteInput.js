@@ -4,8 +4,8 @@ import SaveIcon from "../../icons/save.svg";
 import suites from "../../data/suites";
 import classnames from "classnames";
 import {
-   checkIsOver,
-   MAX_CARD_CHARS,
+   // checkIsOver,
+   // MAX_CARD_CHARS,
    safelyParseJson,
 } from "../../utils/helpers";
 import axios from "axios";
@@ -17,56 +17,57 @@ class SuiteInput extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         inputSuite: "",
+         title: "",
          totalKingBed: "",
          totalQueenBed: "",
          totalFullBed: "",
-         measurementOfSqFt: "",
+         squareFt: "",
          maxGuest: "",
          hasWifi: false,
          hasTv: false,
-         hasInRoomSafe: false,
+         hasSafe: false,
          isAccessible: false,
       };
    }
 
-   checkHasInvalidCharCount() {
-      if (
-         this.state.inputSuite.length > MAX_CARD_CHARS ||
-         this.state.inputSuite.length === 0
-      ) {
-         return true;
-      } else return false;
-   }
+   // checkHasInvalidCharCount() {
+   //    if (
+   //       this.props.property.suites.title.length > MAX_CARD_CHARS ||
+   //       this.props.property.suites.title.length === 0
+   //    ) {
+   //       return true;
+   //    } else return false;
+   // }
 
    // setInputSuite(e) {
    //    this.setState({ inputSuite: e.target.value });
    // }
    updateSuiteInput(e) {
       let value = e.target.value;
-      if (value === "true" || value === "false") {
+      if (value === Boolean && value === Number(value)) {
          value = safelyParseJson(value); // "true" will be into true str to boolean
       }
-      this.setState({ [e.target.name]: value }); // set state based off target name
-      // eslint-disable-next-line
-      if (value == Number(value)) {
-         value = safelyParseJson(value); // "4" will turn into 4 str to num
-      }
-      this.setState({ [e.target.name]: value }); // set state based off target name
+      // this.setState({ [e.target.name]: value }); // set state based off target name
+      const payload = {
+         ...this.props.property,
+         [e.target.name]: value,
+      };
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: payload,
+      });
    }
 
    saveUpdateSuiteInput() {
       // mimic API response:
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users.json"
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
          )
          .then((res) => {
             // handle success
-            const currentUser = res.data;
-            console.log(currentUser);
             this.props.dispatch({
-               type: actions.UPDATE_CURRENT_USER,
+               type: actions.UPDATE_EDITABLE_PROPERTY,
                payload: res.data,
             });
          })
@@ -104,68 +105,64 @@ class SuiteInput extends React.Component {
                </div>
                {/* <!--NAME & BEDROOMS--> */}
                <div className="form-group">
-                  <label htmlFor="inputSuite">Name of suite</label>
+                  <label htmlFor="title">Name of suite</label>
                   <input
                      type="text"
                      className="form-control"
-                     id="inputSuite"
-                     placeholder={suite.title}
-                     defaultValue={this.state.inputSuite}
-                     name="inputSuite"
+                     id="title"
+                     defaultValue={this.props.editableSuite.title}
+                     name="title"
                      onChange={(e) => this.updateSuiteInput(e)}
                   />
                </div>
-               <p
+               {/* <p
                   className="float-right my-n4 text-muted d-flex ml-4"
                   id="suite-characters"
                >
                   <span
                      className={classnames({
                         "text-danger": checkIsOver(
-                           this.state.inputSuite,
+                           this.props.property.suites.title,
                            MAX_CARD_CHARS
                         ),
                      })}
                   >
-                     {this.state.inputSuite.length}/{MAX_CARD_CHARS}
+                     {this.props.property.suites.title.length}/{MAX_CARD_CHARS}
                   </span>
-               </p>
+               </p> */}
 
                {/* <!--ROW OF BEDS--> */}
                <div className="form-row">
                   <div className="form-group col-4">
-                     <label htmlFor="inputKingBed">King beds</label>
+                     <label htmlFor="totalKingBed">King beds</label>
                      <input
                         type="text"
                         className="form-control"
-                        id="inputKingBed"
-                        placeholder="1"
+                        id="totalKingBed"
                         name="totalKingBed"
-                        defaultValue={this.state.totalKingBed}
+                        defaultValue={this.props.editableSuite.totalKingBed}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
                   </div>
                   <div className="form-group col-4">
-                     <label htmlFor="inputQueenBed">Queen beds</label>
+                     <label htmlFor="totalQueenBed">Queen beds</label>
                      <input
                         type="text"
                         className="form-control"
-                        id="inputQueenBed"
-                        placeholder="2"
+                        id="totalQueenBed"
                         name="totalQueenBed"
-                        defaultValue={this.state.totalQueenBed}
+                        defaultValue={this.props.editableSuite.totalQueenBed}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
                   </div>
                   <div className="form-group col-4">
-                     <label htmlFor="inputFullBed">Full beds</label>
+                     <label htmlFor="totalFullBed">Full beds</label>
                      <input
                         type="text"
                         className="form-control"
-                        id="inputFullBed"
-                        placeholder="0"
+                        id="totalFullBed"
                         name="totalFullBed"
-                        defaultValue={this.state.totalFullBed}
+                        defaultValue={this.props.editableSuite.totalFullBed}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
                   </div>
@@ -173,26 +170,24 @@ class SuiteInput extends React.Component {
                {/* <!--SQFT and MAX GST--> */}
                <div className="form-row">
                   <div className="form-group col-6">
-                     <label htmlFor="inputSqft">Square ft.</label>
+                     <label htmlFor="squareFt">Square ft.</label>
                      <input
                         type="text"
                         className="form-control"
-                        id="inputSqft"
-                        placeholder="1714"
-                        name="measurementOfSqFt"
-                        defaultValue={this.state.measurementOfSqFt}
+                        id="squareFt"
+                        name="squareFt"
+                        defaultValue={this.props.editableSuite.squareFt}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
                   </div>
                   <div className="form-group col-6">
-                     <label htmlFor="inputMaxGuest">Max Guests</label>
+                     <label htmlFor="maxGuest">Max Guests</label>
                      <input
                         type="text"
                         className="form-control"
-                        id="inputMaxGuest"
-                        placeholder="6"
+                        id="maxGuest"
                         name="maxGuest"
-                        defaultValue={this.state.maxGuest}
+                        defaultValue={this.props.editableSuite.maxGuest}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
                   </div>
@@ -207,13 +202,13 @@ class SuiteInput extends React.Component {
                      <input
                         className="form-check-input"
                         type="checkbox"
-                        id="wifi"
-                        checked={this.state.hasWifi}
+                        id="hasWifi"
+                        checked={this.props.editableSuite.hasWifi}
                         name="hasWifi"
-                        defaultValue={!this.state.hasWifi}
+                        defaultValue={!this.props.editableSuite.hasWifi}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
-                     <label className="form-check-label" htmlFor="wifi">
+                     <label className="form-check-label" htmlFor="hasWifi">
                         WiFi
                      </label>
                   </div>
@@ -221,13 +216,13 @@ class SuiteInput extends React.Component {
                      <input
                         className="form-check-input"
                         type="checkbox"
-                        id="tv"
-                        checked={this.state.hasTv}
+                        id="hasTv"
+                        checked={this.props.editableSuite.hasTv}
                         name="hasTv"
-                        defaultValue={!this.state.hasTv}
+                        defaultValue={!this.props.editableSuite.hasTv}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
-                     <label className="form-check-label" htmlFor="tv">
+                     <label className="form-check-label" htmlFor="hasTv">
                         TV
                      </label>
                   </div>
@@ -235,13 +230,16 @@ class SuiteInput extends React.Component {
                      <input
                         className="form-check-input"
                         type="checkbox"
-                        id="inRoomSafe"
-                        checked={this.state.hasInRoomSafe}
+                        id="hasInRoomSafe"
+                        checked={this.props.editableSuite.hasInRoomSafe}
                         name="hasInRoomSafe"
-                        defaultValue={!this.state.hasInRoomSafe}
+                        defaultValue={!this.props.editableSuite.hasInRoomSafe}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
-                     <label className="form-check-label" htmlFor="inRoomSafe">
+                     <label
+                        className="form-check-label"
+                        htmlFor="hasInRoomSafe"
+                     >
                         In-Room Safe
                      </label>
                   </div>
@@ -249,13 +247,13 @@ class SuiteInput extends React.Component {
                      <input
                         className="form-check-input"
                         type="checkbox"
-                        id="accessible"
-                        checked={this.state.isAccessible}
+                        id="isAccessible"
+                        checked={this.props.editableSuite.isAccessible}
                         name="isAccessible"
-                        defaultValue={!this.state.isAccessible}
+                        defaultValue={!this.props.editableSuite.isAccessible}
                         onChange={(e) => this.updateSuiteInput(e)}
                      />
-                     <label className="form-check-label" htmlFor="accessible">
+                     <label className="form-check-label" htmlFor="isAccessible">
                         Accessible
                      </label>
                   </div>
@@ -264,7 +262,7 @@ class SuiteInput extends React.Component {
             <Link
                to="/select-property"
                className={classnames("btn btn-primary btn-block mb-4", {
-                  disabled: this.checkHasInvalidCharCount(),
+                  // disabled: this.checkHasInvalidCharCount(),
                })}
                style={{ width: "100%" }}
                id="save"
@@ -286,6 +284,8 @@ class SuiteInput extends React.Component {
    }
 }
 function mapStateToProps(state) {
-   return {};
+   return {
+      editableSuite: state.editableSuite,
+   };
 }
 export default connect(mapStateToProps)(SuiteInput);

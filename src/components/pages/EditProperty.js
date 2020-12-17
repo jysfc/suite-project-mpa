@@ -2,40 +2,19 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import SuiteAddIcon from "../../icons/suite-add.svg";
-// import SuiteAvail from "../ui/SuiteAvail";
 import RemoveIcon from "../../icons/remove.svg";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
-// import axios from "axios";
 
 class EditProperty extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         displayedSuites: [],
+         image: "",
+         title: "",
       };
-      // this.deleteSuite = this.deleteSuite.bind(this);
    }
-
-   // componentDidMount() {
-   //    axios
-   //       .get(
-   //          "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
-   //       )
-   //       .then((res) => {
-   //          // handle success
-   //          const displayedProperties = res.data;
-   //          console.log(displayedProperties);
-   //          this.setState({
-   //             displayedSuites: displayedProperties.properties.suite,
-   //          });
-   //       })
-   //       .catch((error) => {
-   //          // handle error
-   //          console.log(error);
-   //       });
-   // }
    deleteSuite(suite) {
       const deletedSuite = suite;
       const suites = this.state.displayedSuites;
@@ -52,7 +31,7 @@ class EditProperty extends React.Component {
    editSuite() {
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_SUITE,
-         payload: this.props.property.suite,
+         payload: this.props.property,
       });
       this.props.history.push("/edit-suite");
    }
@@ -68,16 +47,6 @@ class EditProperty extends React.Component {
                      </div>
                      {/* <!--COLUMN RIGHT PROP RESULT--> */}
                      <div className="col-sm-6">
-                        {/* <!--RESULTS--> */}
-                        {/* {this.state.displayedSuites.map((suite) => {
-                           return (
-                              <SuiteAvail
-                                 suite={suite}
-                                 key={suite.id}
-                                 deleteSuite={this.deleteSuite}
-                              />
-                           );
-                        })} */}
                         {/*<!--RESULT-->*/}
                         <div
                            className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
@@ -86,9 +55,10 @@ class EditProperty extends React.Component {
                            <div className="row">
                               <div className="col-md-6 pr-1">
                                  <img
-                                    src={this.props.property.image}
+                                    src={this.props.property.suites.image}
                                     className="img-fluid"
-                                    alt={this.props.property.title}
+                                    name="image"
+                                    alt={this.props.property.suites.title}
                                  />{" "}
                               </div>
                               <div className="col-md-6 float-right">
@@ -101,7 +71,7 @@ class EditProperty extends React.Component {
                                           this.editSuite();
                                        }}
                                     >
-                                       {this.props.property.title}
+                                       {this.props.property.suites.title}
                                     </Link>
 
                                     <button
@@ -125,10 +95,12 @@ class EditProperty extends React.Component {
 
                         {/* <!--NEW PROP--> */}
                         <div className="col">
-                           <Link
-                              to="/edit-suite"
-                              className="text-decoration-none"
+                           <button
+                              className="text-decoration-none btn btn-link"
                               type="add-suite"
+                              onClick={() => {
+                                 this.editSuite();
+                              }}
                            >
                               <img
                                  src={SuiteAddIcon}
@@ -137,7 +109,7 @@ class EditProperty extends React.Component {
                                  alt=""
                               />
                               <p className="d-inline ml-4">Add Suite</p>
-                           </Link>
+                           </button>
                         </div>
                      </div>
                   </div>
@@ -153,5 +125,4 @@ function mapStateToProps(state) {
       editableSuite: state.editableSuite,
    };
 }
-
 export default connect(mapStateToProps)(EditProperty);
