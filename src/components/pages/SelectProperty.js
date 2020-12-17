@@ -56,6 +56,7 @@ class SelectProperty extends React.Component {
             {this.state.displayedProperties.map((property) => {
                return (
                   <PropPrev
+                     EditProperty
                      property={property}
                      key={property.id}
                      deleteProperty={this.deleteProperty}

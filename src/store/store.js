@@ -6,6 +6,7 @@ const initialState = {
    currentUser: {},
    editableSuite: {},
    editableProperty: {},
+   selectedSuite: {},
    allSuites: {
       suites: [],
       index: 0,

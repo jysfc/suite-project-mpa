@@ -8,7 +8,7 @@ class PropPrev extends React.Component {
    editProperty() {
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
-         payload: this.props.property.suite,
+         payload: this.props.property,
       });
       this.props.history.push("/edit-property");
    }
@@ -44,6 +44,7 @@ class PropPrev extends React.Component {
 function mapStateToProps(state) {
    return {
       editableProperty: state.editableProperty,
+      editableSuite: state.editableSuite,
    };
 }
 export default withRouter(connect(mapStateToProps)(PropPrev));

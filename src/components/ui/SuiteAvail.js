@@ -23,9 +23,9 @@ class SuiteAvail extends React.Component {
                <div className="row">
                   <div className="col-md-6 pr-1">
                      <img
-                        src={this.props.suite.image}
+                        src={this.props.property.suite.image}
                         className="img-fluid"
-                        alt={this.props.suite.title}
+                        alt={this.props.property.suite.title}
                      />{" "}
                   </div>
                   <div className="col-md-6 float-right">
@@ -38,7 +38,7 @@ class SuiteAvail extends React.Component {
                               this.editSuite();
                            }}
                         >
-                           {this.props.suite.title}
+                           {this.props.property.suite.title}
                         </Link>
 
                         <button
@@ -66,7 +66,7 @@ class SuiteAvail extends React.Component {
 function mapStateToProps(state) {
    return {
       editableSuite: state.editableSuite,
-      allSuites: state.allSuites,
+      property: state.editableProperty,
    };
 }
 

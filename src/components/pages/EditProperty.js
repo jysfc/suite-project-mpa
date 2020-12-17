@@ -2,7 +2,8 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import SuiteAddIcon from "../../icons/suite-add.svg";
-import SuiteAvail from "../ui/SuiteAvail";
+// import SuiteAvail from "../ui/SuiteAvail";
+import RemoveIcon from "../../icons/remove.svg";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
@@ -14,7 +15,7 @@ class EditProperty extends React.Component {
       this.state = {
          displayedSuites: [],
       };
-      this.deleteSuite = this.deleteSuite.bind(this);
+      // this.deleteSuite = this.deleteSuite.bind(this);
    }
 
    // componentDidMount() {
@@ -43,12 +44,18 @@ class EditProperty extends React.Component {
       });
       console.log(filteredSuites);
       this.props.dispatch({
-         type: actions.UPDATE_EDITABLE_SUITE,
+         type: actions.UPDATE_EDITABLE_PROPERTY,
          payload: filteredSuites,
       });
       this.setState({ displayedSuites: filteredSuites });
    }
-
+   editSuite() {
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_SUITE,
+         payload: this.props.property.suite,
+      });
+      this.props.history.push("/edit-suite");
+   }
    render() {
       return (
          <AppTemplate>
@@ -62,7 +69,7 @@ class EditProperty extends React.Component {
                      {/* <!--COLUMN RIGHT PROP RESULT--> */}
                      <div className="col-sm-6">
                         {/* <!--RESULTS--> */}
-                        {this.state.displayedSuites.map((suite) => {
+                        {/* {this.state.displayedSuites.map((suite) => {
                            return (
                               <SuiteAvail
                                  suite={suite}
@@ -70,7 +77,51 @@ class EditProperty extends React.Component {
                                  deleteSuite={this.deleteSuite}
                               />
                            );
-                        })}
+                        })} */}
+                        {/*<!--RESULT-->*/}
+                        <div
+                           className="mb-3 mt-4 shadow p-3 mb-5 bg-white rounded"
+                           style={{ maxWidth: "auto", height: "auto" }}
+                        >
+                           <div className="row">
+                              <div className="col-md-6 pr-1">
+                                 <img
+                                    src={this.props.property.image}
+                                    className="img-fluid"
+                                    alt={this.props.property.title}
+                                 />{" "}
+                              </div>
+                              <div className="col-md-6 float-right">
+                                 <div className="text-muted">
+                                    <Link
+                                       to="/edit-suite"
+                                       className="text-dark lead text-decoration-none"
+                                       type="button"
+                                       onClick={() => {
+                                          this.editSuite();
+                                       }}
+                                    >
+                                       {this.props.property.title}
+                                    </Link>
+
+                                    <button
+                                       className="text-danger text-decoration-none float-right btn btn-link"
+                                       onClick={() => {
+                                          this.deleteSuite();
+                                       }}
+                                    >
+                                       <img
+                                          src={RemoveIcon}
+                                          width="20px"
+                                          id="property-remove"
+                                          alt=""
+                                       />
+                                       Remove
+                                    </button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
 
                         {/* <!--NEW PROP--> */}
                         <div className="col">
@@ -98,7 +149,7 @@ class EditProperty extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      editableProperty: state.editableProperty,
+      property: state.editableProperty,
       editableSuite: state.editableSuite,
    };
 }

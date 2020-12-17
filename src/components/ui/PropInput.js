@@ -15,15 +15,15 @@ class PropInput extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         inputHotel: "",
-         inputUrl: "",
-         inputAddress: "",
-         inputAddress2: "",
-         inputCity: "",
-         inputState: "",
-         inputZip: "",
-         inputCountry: "",
-         inputPhone: "",
+         name: "",
+         website: "",
+         address1: "",
+         address2: "",
+         city: "",
+         state: "",
+         zip: "",
+         country: "",
+         phone: "",
          hasOutdoorPool: false,
          hasSpa: false,
          isSmokeFree: false,
@@ -32,8 +32,8 @@ class PropInput extends React.Component {
 
    checkHasInvalidCharCount() {
       if (
-         this.state.inputHotel.length > MAX_CARD_CHARS ||
-         this.state.inputHotel.length === 0
+         this.props.property.name.length > MAX_CARD_CHARS ||
+         this.props.property.name.length === 0
       ) {
          return true;
       } else return false;
@@ -44,21 +44,27 @@ class PropInput extends React.Component {
       if (value === "true" || value === "false") {
          value = safelyParseJson(value); // "true" will be into true str to boolean
       }
-      this.setState({ [e.target.name]: value }); // set state based off target name
+      // this.setState({ [e.target.name]: value }); // set state based off target name
+      const payload = {
+         ...this.props.property,
+         [e.target.name]: value,
+      };
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: payload,
+      });
    }
 
    saveUpdatePropInput() {
       // mimic API response:
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users.json"
+            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
          )
          .then((res) => {
             // handle success
-            const currentUser = res.data;
-            console.log(currentUser);
             this.props.dispatch({
-               type: actions.UPDATE_CURRENT_USER,
+               type: actions.UPDATE_EDITABLE_PROPERTY,
                payload: res.data,
             });
          })
@@ -74,14 +80,13 @@ class PropInput extends React.Component {
             {/* <!--CoLUMN LEFT EDIT PROP--> */}
             {/* <!--HOTEL & URL--> */}
             <div className="form-group">
-               <label htmlFor="inputHotel">Hotel</label>
+               <label htmlFor="name">Hotel</label>
                <input
                   type="text"
                   className="form-control"
-                  id="inputHotel"
-                  placeholder="The Mirage Hotel & Casino"
-                  defaultValue={this.state.inputHotel}
-                  name="inputHotel"
+                  id="name"
+                  defaultValue={this.props.property.name}
+                  name="name"
                   onChange={(e) => this.updatePropInput(e)}
                />
             </div>
@@ -92,63 +97,59 @@ class PropInput extends React.Component {
                <span
                   className={classnames({
                      "text-danger": checkIsOver(
-                        this.state.inputHotel,
+                        this.props.property.name,
                         MAX_CARD_CHARS
                      ),
                   })}
                >
-                  {this.state.inputHotel.length}/{MAX_CARD_CHARS}
+                  {this.props.property.name.length}/{MAX_CARD_CHARS}
                </span>
             </p>
             <div className="form-group">
-               <label htmlFor="inputUrl">Website URL</label>
+               <label htmlFor="website">Website URL</label>
                <input
-                  type="text"
+                  type="url"
                   className="form-control"
-                  id="inputUrl"
-                  placeholder="www.mirage.com"
-                  defaultValue={this.state.inputUrl}
-                  name="inputUrl"
+                  id="website"
+                  defaultValue={this.props.property.website}
+                  name="website"
                   onChange={(e) => this.updatePropInput(e)}
                />
             </div>
 
             {/* <!--ADDRESS--> */}
             <div className="form-group">
-               <label htmlFor="inputAddress">Address</label>
+               <label htmlFor="address1">Address</label>
                <input
                   type="text"
                   className="form-control"
-                  id="inputAddress"
-                  placeholder="3400 S Las Vegas Blvd"
-                  defaultValue={this.state.inputAddress}
-                  name="inputAddress"
+                  id="address1"
+                  defaultValue={this.props.property.address1}
+                  name="address1"
                   onChange={(e) => this.updatePropInput(e)}
                />
             </div>
             <div className="form-group">
-               <label htmlFor="inputAddress2">Address 2</label>
+               <label htmlFor="address2">Address 2</label>
                <input
                   type="text"
                   className="form-control"
-                  id="inputAddress2"
-                  placeholder=""
-                  defaultValue={this.state.inputAddress2}
-                  name="inputAddress2"
+                  id="address2"
+                  defaultValue={this.props.property.address2}
+                  name="address2"
                   onChange={(e) => this.updatePropInput(e)}
                />
             </div>
             {/* <!--CITY STATE ZIP COUNTRY--> */}
             <div className="form-row">
                <div className="form-group col-md-12">
-                  <label htmlFor="inputCity">City</label>
+                  <label htmlFor="city">City</label>
                   <input
                      type="text"
                      className="form-control"
-                     id="inputCity"
-                     placeholder="Las Vegas"
-                     defaultValue={this.state.inputCity}
-                     name="inputCity"
+                     id="city"
+                     defaultValue={this.props.property.city}
+                     name="city"
                      onChange={(e) => this.updatePropInput(e)}
                   />
                </div>
@@ -157,12 +158,12 @@ class PropInput extends React.Component {
             {/* <!--State Abbreviation--> */}
             <div className="form-row">
                <div className="form-group col-md-4">
-                  <label htmlFor="inputState">State</label>
+                  <label htmlFor="state">State</label>
                   <select
-                     id="inputState"
+                     id="state"
                      className="form-control"
-                     defaultValue={this.state.inputState}
-                     name="inputState"
+                     defaultValue={this.props.property.state}
+                     name="state"
                      onChange={(e) => this.updatePropInput(e)}
                   >
                      <option value="CA">California</option>
@@ -170,25 +171,24 @@ class PropInput extends React.Component {
                   </select>
                </div>
                <div className="form-group col-md-4">
-                  <label htmlFor="inputZip">Zip</label>
+                  <label htmlFor="zip">Zip</label>
                   <input
                      type="text"
                      className="form-control"
-                     id="inputZip"
-                     placeholder="89109"
-                     defaultValue={this.state.inputZip}
-                     name="inputZip"
+                     id="zip"
+                     defaultValue={this.props.property.zip}
+                     name="zip"
                      onChange={(e) => this.updatePropInput(e)}
                   />
                </div>
                {/* <!-- Country Abbreviation --> */}
                <div className="form-group col-md-4">
-                  <label htmlFor="inputState">Country</label>
+                  <label htmlFor="country">Country</label>
                   <select
-                     id="inputCountry"
+                     id="country"
                      className="form-control"
-                     defaultValue={this.state.inputCountry}
-                     name="inputCountry"
+                     defaultValue={this.props.property.country}
+                     name="country"
                      onChange={(e) => this.updatePropInput(e)}
                   >
                      <option value="US">US</option>
@@ -199,14 +199,13 @@ class PropInput extends React.Component {
             {/* <!-- country code & phone number--> */}
             <div className="form-row">
                <div className="form-group col-md-12">
-                  <label htmlFor="inputPhone">Phone Number</label>
+                  <label htmlFor="phone">Phone Number</label>
                   <input
-                     type="phone"
+                     type="tel"
                      className="form-control"
-                     id="inputPhone"
-                     placeholder="702-791-7111"
-                     defaultValue={this.state.inputPhone}
-                     name="inputPhone"
+                     id="phone"
+                     defaultValue={this.props.property.phone}
+                     name="phone"
                      onChange={(e) => this.updatePropInput(e)}
                   />
                </div>
@@ -221,13 +220,13 @@ class PropInput extends React.Component {
                   <input
                      className="form-check-input"
                      type="checkbox"
-                     id="OutdoorPool"
-                     checked={this.state.hasOutdoorPool}
+                     id="hasOutdoorPool"
+                     checked={this.props.property.hasOutdoorPool}
                      name="hasOutdoorPool"
-                     value={!this.state.hasOutdoorPool}
+                     value={!this.props.property.hasOutdoorPool}
                      onChange={(e) => this.updatePropInput(e)}
                   />
-                  <label className="form-check-label" htmlFor="OutdoorPool">
+                  <label className="form-check-label" htmlFor="hasOutdoorPool">
                      Outdoor Pool
                   </label>
                </div>
@@ -236,13 +235,13 @@ class PropInput extends React.Component {
                   <input
                      className="form-check-input"
                      type="checkbox"
-                     id="Spa"
-                     checked={this.state.hasSpa}
+                     id="hasSpa"
+                     checked={this.props.property.hasSpa}
                      name="hasSpa"
-                     value={!this.state.hasSpa}
+                     value={!this.props.property.hasSpa}
                      onChange={(e) => this.updatePropInput(e)}
                   />
-                  <label className="form-check-label" htmlFor="Spa">
+                  <label className="form-check-label" htmlFor="hasSpa">
                      Spa
                   </label>
                </div>
@@ -251,13 +250,13 @@ class PropInput extends React.Component {
                   <input
                      className="form-check-input"
                      type="checkbox"
-                     id="SmokeFree"
-                     checked={this.state.isSmokeFree}
+                     id="isSmokeFree"
+                     checked={this.props.property.isSmokeFree}
                      name="isSmokeFree"
-                     value={!this.state.isSmokeFree}
+                     value={!this.props.property.isSmokeFree}
                      onChange={(e) => this.updatePropInput(e)}
                   />
-                  <label className="form-check-label" htmlFor="SmokeFree">
+                  <label className="form-check-label" htmlFor="isSmokeFree">
                      Smoke-free
                   </label>
                </div>
@@ -287,6 +286,8 @@ class PropInput extends React.Component {
    }
 }
 function mapStateToProps(state) {
-   return {};
+   return {
+      property: state.editableProperty,
+   };
 }
 export default connect(mapStateToProps)(PropInput);
