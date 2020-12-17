@@ -107,7 +107,7 @@ class SignUp extends React.Component {
          // mimic API response:
          axios
             .get(
-               "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/users-flatten.json"
+               "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
             )
             .then((res) => {
                // handle success

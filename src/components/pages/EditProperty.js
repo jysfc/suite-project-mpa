@@ -6,6 +6,7 @@ import SuiteAvail from "../ui/SuiteAvail";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
+// import axios from "axios";
 
 class EditProperty extends React.Component {
    constructor(props) {
@@ -16,6 +17,24 @@ class EditProperty extends React.Component {
       this.deleteSuite = this.deleteSuite.bind(this);
    }
 
+   // componentDidMount() {
+   //    axios
+   //       .get(
+   //          "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
+   //       )
+   //       .then((res) => {
+   //          // handle success
+   //          const displayedProperties = res.data;
+   //          console.log(displayedProperties);
+   //          this.setState({
+   //             displayedSuites: displayedProperties.properties.suite,
+   //          });
+   //       })
+   //       .catch((error) => {
+   //          // handle error
+   //          console.log(error);
+   //       });
+   // }
    deleteSuite(suite) {
       const deletedSuite = suite;
       const suites = this.state.displayedSuites;

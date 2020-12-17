@@ -264,7 +264,7 @@ class PropInput extends React.Component {
             </div>
 
             <Link
-               to="/edit-property"
+               to="/edit-suite"
                className={classnames("btn btn-primary btn-block mb-4", {
                   disabled: this.checkHasInvalidCharCount(),
                })}
