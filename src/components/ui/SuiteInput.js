@@ -42,7 +42,7 @@ class SuiteInput extends React.Component {
    // }
    updateSuiteInput(e) {
       let value = e.target.value;
-      if (value === Boolean && value === Number(value)) {
+      if (value === "true" || value === "false" || value === Number(value)) {
          value = safelyParseJson(value); // "true" will be into true str to boolean
       }
       // this.setState({ [e.target.name]: value }); // set state based off target name
@@ -51,7 +51,7 @@ class SuiteInput extends React.Component {
          [e.target.name]: value,
       };
       this.props.dispatch({
-         type: actions.UPDATE_EDITABLE_PROPERTY,
+         type: actions.UPDATE_EDITABLE_SUITE,
          payload: payload,
       });
    }
@@ -65,7 +65,7 @@ class SuiteInput extends React.Component {
          .then((res) => {
             // handle success
             this.props.dispatch({
-               type: actions.UPDATE_EDITABLE_PROPERTY,
+               type: actions.UPDATE_EDITABLE_SUITE,
                payload: res.data,
             });
          })
