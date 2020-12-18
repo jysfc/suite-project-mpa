@@ -1,17 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SaveIcon from "../../icons/save.svg";
-import suites from "../../data/suites";
 import classnames from "classnames";
 import {
-   // checkIsOver,
-   // MAX_CARD_CHARS,
+   checkIsOver,
+   MAX_CARD_CHARS,
    safelyParseJson,
 } from "../../utils/helpers";
 import axios from "axios";
 import actions from "../../store/actions";
 import { connect } from "react-redux";
-const suite = suites[0];
 
 class SuiteInput extends React.Component {
    constructor(props) {
@@ -30,14 +28,14 @@ class SuiteInput extends React.Component {
       };
    }
 
-   // checkHasInvalidCharCount() {
-   //    if (
-   //       this.props.property.suites.title.length > MAX_CARD_CHARS ||
-   //       this.props.property.suites.title.length === 0
-   //    ) {
-   //       return true;
-   //    } else return false;
-   // }
+   checkHasInvalidCharCount() {
+      if (
+         this.props.editableSuite.title.length > MAX_CARD_CHARS ||
+         this.props.editableSuite.title.length === 0
+      ) {
+         return true;
+      } else return false;
+   }
 
    // setInputSuite(e) {
    //    this.setState({ inputSuite: e.target.value });
@@ -83,9 +81,9 @@ class SuiteInput extends React.Component {
          <div className="col-12 col-md-6">
             <form className="md-form">
                <img
-                  src={suite.image}
+                  src={this.props.editableSuite.image}
                   className="img-fluid mb-4 crop"
-                  alt={suite.title}
+                  alt={this.props.editableSuite.title}
                />
                {/* <!--URL image (link)--> */}
                <div className="custom-file mb-4" disabled>
@@ -115,21 +113,21 @@ class SuiteInput extends React.Component {
                      onChange={(e) => this.updateSuiteInput(e)}
                   />
                </div>
-               {/* <p
+               <p
                   className="float-right my-n4 text-muted d-flex ml-4"
                   id="suite-characters"
                >
                   <span
                      className={classnames({
                         "text-danger": checkIsOver(
-                           this.props.property.suites.title,
+                           this.props.editableSuite.title,
                            MAX_CARD_CHARS
                         ),
                      })}
                   >
-                     {this.props.property.suites.title.length}/{MAX_CARD_CHARS}
+                     {this.props.editableSuite.title.length}/{MAX_CARD_CHARS}
                   </span>
-               </p> */}
+               </p>
 
                {/* <!--ROW OF BEDS--> */}
                <div className="form-row">
@@ -262,7 +260,7 @@ class SuiteInput extends React.Component {
             <Link
                to="/select-property"
                className={classnames("btn btn-primary btn-block mb-4", {
-                  // disabled: this.checkHasInvalidCharCount(),
+                  disabled: this.checkHasInvalidCharCount(),
                })}
                style={{ width: "100%" }}
                id="save"
