@@ -12,6 +12,7 @@ export const usersFlat = [
        password: "82CBE1D375C65A50EC24654B5272683FBB58B5B4",
        createdAt: 1605664433241,
        isActive: true
+    },
     {
        id: "49add96e-1c04-40d6-9256-231f314c0a2f",
        email: "john@westinstfrancis.com",
