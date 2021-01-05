@@ -1,4 +1,4 @@
-const usersFlatSchema = {
+const usersSchema = {
     id: string,
     email: string,
     password: string,

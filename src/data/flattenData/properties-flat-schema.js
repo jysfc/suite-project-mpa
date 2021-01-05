@@ -1,4 +1,4 @@
-const propertiesFlatSchema = {
+const propertiesSchema = {
     userId: string,
     propertyName: string,
     propertyId: string,
