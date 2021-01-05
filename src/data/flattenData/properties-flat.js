@@ -1,4 +1,4 @@
-export const propertiesFlat = [
+export const properties = [
     {
        userId: "9bfbc757-fcc9-40c8-9f83-652fdefee41e",
        propertyName: "The Mirage Hotel & Casino",
@@ -10,9 +10,9 @@ export const propertiesFlat = [
        propertyState: "NV",
        propertyZip: "89109",
        propertyCountry: "US",
-       propertyPhoneCountryCode: "+1",
-       propertyPhoneAreaCode: "702",
-       propertyPhoneNumber: "7917111", //just numbers
+       propertyPhoneCountryCode: 1,
+       propertyPhoneAreaCode: 702,
+       propertyPhoneNumber: 7917111,
        propertySelfParking: "Free",
        propertyValetParking: "N/A",
        propertyHasOutdoorPool: true,
@@ -31,9 +31,9 @@ export const propertiesFlat = [
        propertyState: "NV",
        propertyZip: "89119",
        propertyCountry: "US",
-       propertyPhoneCountryCode: "+1",
-       propertyPhoneAreaCode: "702",
-       propertyPhoneNumber: "6327777", //just numbers
+       propertyPhoneCountryCode: 1,
+       propertyPhoneAreaCode: 702,
+       propertyPhoneNumber: 6327777,
        propertySelfParking: "Free",
        propertyValetParking: "N/A",
        propertyHasOutdoorPool: true,
@@ -53,9 +53,9 @@ export const propertiesFlat = [
        propertyState: "CA",
        propertyZip: "94102",
        propertyCountry: "US",
-       propertyPhoneCountryCode: "+1",
-       propertyPhoneAreaCode: "415",
-       propertyPhoneNumber: "3977000", //just numbers
+       propertyPhoneCountryCode: 1,
+       propertyPhoneAreaCode: 415,
+       propertyPhoneNumber: 3977000,
        propertySelfParking: "N/A",
        propertyValetParking: "68",
        propertyHasOutdoorPool: false,
