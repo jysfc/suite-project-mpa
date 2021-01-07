@@ -12,7 +12,8 @@
       "hasWiFi": true,
       "hasTv": true,
       "hasSafe": true,
-      "isAccessible": true
+      "isAccessible": true,
+      "isActive": true
    },
 
    {
@@ -28,7 +29,8 @@
       "hasWiFi": true,
       "hasTv": true,
       "hasSafe": true,
-      "isAccessible": true
+      "isAccessible": true,
+      "isActive": true
    },
    {
       "propertyId": "76e032b2-8ba6-4487-818c-5290cdbb5a1c",
@@ -43,7 +45,8 @@
       "hasWiFi": true,
       "hasTv": true,
       "hasSafe": true,
-      "isAccessible": true
+      "isAccessible": true,
+      "isActive": true
    },
 
    {
@@ -59,7 +62,8 @@
       "hasWiFi": true,
       "hasTv": true,
       "hasSafe": true,
-      "isAccessible": false
+      "isAccessible": false,
+      "isActive": true
    },
    {
       "propertyId": "21f77c6b-d814-4763-9d1c-d582f73ab457",
@@ -74,6 +78,7 @@
       "hasWiFi": true,
       "hasTv": true,
       "hasSafe": true,
-      "isAccessible": false
+      "isAccessible": false,
+      "isActive": true
    }
 ]
